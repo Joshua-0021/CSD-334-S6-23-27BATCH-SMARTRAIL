@@ -6,7 +6,15 @@
     "source": "TVC",
     "destination": "CLT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 399.3,
     "classes": [
       "SL",
@@ -157,7 +165,15 @@
     "source": "TVC",
     "destination": "MAS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 918,
     "classes": [
       "SL",
@@ -378,7 +394,15 @@
     "source": "TVC",
     "destination": "NDLS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 3030,
     "classes": [
       "SL",
@@ -731,7 +755,9 @@
     "source": "NCJ",
     "destination": "SHM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 2579.2,
     "classes": [
       "SL",
@@ -1084,7 +1110,15 @@
     "source": "TVC",
     "destination": "MAS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 918,
     "classes": [
       "SL",
@@ -1311,7 +1345,15 @@
     "source": "MS",
     "destination": "GUV",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1096.1,
     "classes": [
       "SL",
@@ -1690,7 +1732,15 @@
     "source": "TVC",
     "destination": "SRR",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 325,
     "classes": [
       "SL",
@@ -1937,7 +1987,15 @@
     "source": "TVC",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 220.3,
     "classes": [
       "SL",
@@ -2130,7 +2188,9 @@
     "source": "NCJ",
     "destination": "MAJN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 704.7,
     "classes": [
       "SL",
@@ -2335,7 +2395,9 @@
     "source": "TVC",
     "destination": "CSMT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 1928.9,
     "classes": [
       "SL",
@@ -2660,7 +2722,15 @@
     "source": "TVC",
     "destination": "GUV",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 303.1,
     "classes": [
       "SL",
@@ -2871,7 +2941,15 @@
     "source": "TVC",
     "destination": "RMM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 769.2,
     "classes": [
       "SL",
@@ -3124,7 +3202,15 @@
     "source": "TVC",
     "destination": "LTT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1498.3,
     "classes": [
       "SL",
@@ -3497,7 +3583,15 @@
     "source": "TVC",
     "destination": "MAQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 632.3,
     "classes": [
       "SL",
@@ -3858,7 +3952,15 @@
     "source": "NCJ",
     "destination": "KTYM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 231.7,
     "classes": [
       "SL",
@@ -4141,7 +4243,15 @@
     "source": "CAPE",
     "destination": "PUNE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1940.5,
     "classes": [
       "SL",
@@ -4568,7 +4678,15 @@
     "source": "CAPE",
     "destination": "SBC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 929.1,
     "classes": [
       "SL",
@@ -4917,7 +5035,15 @@
     "source": "TVC",
     "destination": "MAQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 620.3,
     "classes": [
       "SL",
@@ -5182,7 +5308,15 @@
     "source": "TVC",
     "destination": "MAQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 620.3,
     "classes": [
       "SL",
@@ -5501,7 +5635,15 @@
     "source": "TVC",
     "destination": "MAQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 632.3,
     "classes": [
       "SL",
@@ -5898,7 +6040,15 @@
     "source": "CAPE",
     "destination": "MAQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 719,
     "classes": [
       "SL",
@@ -6307,7 +6457,15 @@
     "source": "MDU",
     "destination": "PUU",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 408.7,
     "classes": [
       "SL",
@@ -6620,7 +6778,15 @@
     "source": "TVC",
     "destination": "SC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1555.2,
     "classes": [
       "SL",
@@ -6961,7 +7127,15 @@
     "source": "MS",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 857.5,
     "classes": [
       "SL",
@@ -7218,7 +7392,15 @@
     "source": "NCJ",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 135.7,
     "classes": [
       "2S"
@@ -7395,7 +7577,15 @@
     "source": "TVC",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 64.6,
     "classes": [
       "2S"
@@ -7548,7 +7738,15 @@
     "source": "CAPE",
     "destination": "PUU",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 195.5,
     "classes": [
       "2S"
@@ -7713,7 +7911,14 @@
     "source": "CAPE",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Sat"
+    ],
     "distanceKm": 151.2,
     "classes": [
       "SL"
@@ -7966,7 +8171,9 @@
     "source": "TVC",
     "destination": "MAS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 893.1,
     "classes": [
       "SL",
@@ -8133,7 +8340,15 @@
     "source": "GUV",
     "destination": "MS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1096.1,
     "classes": [
       "SL",
@@ -8506,7 +8721,15 @@
     "source": "PUNE",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1940.5,
     "classes": [
       "SL",
@@ -8927,7 +9150,15 @@
     "source": "SBC",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 929.1,
     "classes": [
       "SL",
@@ -9282,7 +9513,15 @@
     "source": "MAQ",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 719,
     "classes": [
       "SL",
@@ -9697,7 +9936,15 @@
     "source": "PUU",
     "destination": "MDU",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 408.7,
     "classes": [
       "SL",
@@ -10022,7 +10269,15 @@
     "source": "QLN",
     "destination": "MS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 857.5,
     "classes": [
       "SL",
@@ -10285,7 +10540,15 @@
     "source": "QLN",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 135.7,
     "classes": [
       "2S"
@@ -10462,7 +10725,15 @@
     "source": "TVCN",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 78.2,
     "classes": [
       "2S"
@@ -10597,7 +10868,15 @@
     "source": "TVC",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 71.2,
     "classes": [
       "2S"
@@ -10726,7 +11005,15 @@
     "source": "TVCN",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 78.2,
     "classes": [
       "2S"
@@ -10867,7 +11154,15 @@
     "source": "PUU",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 195.5,
     "classes": [
       "2S"
@@ -11032,7 +11327,14 @@
     "source": "QLN",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Sat"
+    ],
     "distanceKm": 151.2,
     "classes": [
       "SL"
@@ -11285,7 +11587,13 @@
     "source": "TVC",
     "destination": "CAN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
     "distanceKm": 500.3,
     "classes": [
       "SL",
@@ -11460,7 +11768,11 @@
     "source": "TVC",
     "destination": "NZM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue",
+      "Thu",
+      "Fri"
+    ],
     "distanceKm": 2842.6,
     "classes": [
       "1A",
@@ -11639,7 +11951,9 @@
     "source": "TVC",
     "destination": "SCL",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 3915.3,
     "classes": [
       "SL",
@@ -12070,7 +12384,9 @@
     "source": "TVC",
     "destination": "NZM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 3010.7,
     "classes": [
       "SL",
@@ -12351,7 +12667,9 @@
     "source": "CAPE",
     "destination": "SVDK",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 3787.5,
     "classes": [
       "SL",
@@ -12826,7 +13144,9 @@
     "source": "TVC",
     "destination": "VRL",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 2411.9,
     "classes": [
       "SL",
@@ -13247,7 +13567,9 @@
     "source": "NCJ",
     "destination": "GIMB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 2341.6,
     "classes": [
       "SL",
@@ -13668,7 +13990,10 @@
     "source": "TEN",
     "destination": "JAM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Tue"
+    ],
     "distanceKm": 2432.1,
     "classes": [
       "SL",
@@ -13951,7 +14276,14 @@
     "source": "TVC",
     "destination": "MAQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 620.3,
     "classes": [
       "SL",
@@ -14096,7 +14428,14 @@
     "source": "TVC",
     "destination": "KGQ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 586.4,
     "classes": [
       "SL",
@@ -14235,7 +14574,9 @@
     "source": "TEN",
     "destination": "GIMB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 2401.2,
     "classes": [
       "SL",
@@ -14456,7 +14797,10 @@
     "source": "TVC",
     "destination": "MAS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Wed"
+    ],
     "distanceKm": 906,
     "classes": [
       "1A",
@@ -14575,7 +14919,15 @@
     "source": "CAPE",
     "destination": "DBRG",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 4154,
     "classes": [
       "SL",
@@ -15018,7 +15370,9 @@
     "source": "TEN",
     "destination": "BSP",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 2491.5,
     "classes": [
       "SL",
@@ -15293,7 +15647,9 @@
     "source": "TVC",
     "destination": "NZM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 2842.6,
     "classes": [
       "SL",
@@ -15556,7 +15912,10 @@
     "source": "TVC",
     "destination": "SHM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu",
+      "Sat"
+    ],
     "distanceKm": 2559.7,
     "classes": [
       "SL",
@@ -15867,7 +16226,9 @@
     "source": "TVC",
     "destination": "NZM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 2854.7,
     "classes": [
       "SL",
@@ -16136,7 +16497,9 @@
     "source": "CDG",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 3164.7,
     "classes": [
       "2S"
@@ -16391,7 +16754,15 @@
     "source": "CLT",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 399.2,
     "classes": [
       "SL",
@@ -16542,7 +16913,15 @@
     "source": "MAS",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 918,
     "classes": [
       "SL",
@@ -16757,7 +17136,15 @@
     "source": "NDLS",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 3030,
     "classes": [
       "SL",
@@ -17104,7 +17491,9 @@
     "source": "SHM",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 2579.2,
     "classes": [
       "SL",
@@ -17457,7 +17846,15 @@
     "source": "MAS",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 918,
     "classes": [
       "SL",
@@ -17678,7 +18075,15 @@
     "source": "SRR",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 325,
     "classes": [
       "SL",
@@ -17925,7 +18330,15 @@
     "source": "ERS",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 220.3,
     "classes": [
       "SL",
@@ -18118,7 +18531,9 @@
     "source": "MAJN",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 704.7,
     "classes": [
       "SL",
@@ -18323,7 +18738,9 @@
     "source": "CSMT",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 1926.8,
     "classes": [
       "SL",
@@ -18654,7 +19071,15 @@
     "source": "GUV",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 303.1,
     "classes": [
       "SL",
@@ -18871,7 +19296,15 @@
     "source": "RMM",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 769.2,
     "classes": [
       "SL",
@@ -19118,7 +19551,15 @@
     "source": "LTT",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1498.3,
     "classes": [
       "SL",
@@ -19491,7 +19932,15 @@
     "source": "MAQ",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 632.3,
     "classes": [
       "SL",
@@ -19846,7 +20295,15 @@
     "source": "MAQ",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 620.3,
     "classes": [
       "SL",
@@ -20105,7 +20562,15 @@
     "source": "MAQ",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 620.3,
     "classes": [
       "SL",
@@ -20424,7 +20889,15 @@
     "source": "MAQ",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 632.3,
     "classes": [
       "SL",
@@ -20821,7 +21294,15 @@
     "source": "SC",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 1555.2,
     "classes": [
       "SL",
@@ -21162,7 +21643,15 @@
     "source": "QLN",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 64.6,
     "classes": [
       "2S"
@@ -21315,7 +21804,15 @@
     "source": "QLN",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 64.6,
     "classes": [
       "2S"
@@ -21468,7 +21965,15 @@
     "source": "TVCN",
     "destination": "NIL",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 384.1,
     "classes": [
       "SL",
@@ -21679,7 +22184,9 @@
     "source": "TVCN",
     "destination": "CHZ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 1546,
     "classes": [
       "SL",
@@ -21944,7 +22451,9 @@
     "source": "TVCN",
     "destination": "SMVB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 813.3,
     "classes": [
       "SL",
@@ -22149,7 +22658,9 @@
     "source": "TVCN",
     "destination": "SMVB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 813.3,
     "classes": [
       "SL",
@@ -22354,7 +22865,9 @@
     "source": "TVCN",
     "destination": "SMVB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 813.3,
     "classes": [
       "SL",
@@ -22553,7 +23066,9 @@
     "source": "MAS",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 893.2,
     "classes": [
       "SL",
@@ -22720,7 +23235,15 @@
     "source": "NCJ",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 78.2,
     "classes": [
       "2S"
@@ -22861,7 +23384,15 @@
     "source": "NCJ",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 78.2,
     "classes": [
       "2S"
@@ -22996,7 +23527,9 @@
     "source": "MAO",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 1017.9,
     "classes": [
       "2S"
@@ -23221,7 +23754,13 @@
     "source": "CAN",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Tue",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 500.3,
     "classes": [
       "SL",
@@ -23396,7 +23935,11 @@
     "source": "NZM",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue",
+      "Wed"
+    ],
     "distanceKm": 2842.7,
     "classes": [
       "1A",
@@ -23575,7 +24118,9 @@
     "source": "SCL",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 3915.7,
     "classes": [
       "SL",
@@ -24000,7 +24545,9 @@
     "source": "NZM",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 3010.7,
     "classes": [
       "SL",
@@ -24275,7 +24822,9 @@
     "source": "SVDK",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 3787.5,
     "classes": [
       "SL",
@@ -24774,7 +25323,9 @@
     "source": "VRL",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 2411.9,
     "classes": [
       "SL",
@@ -25207,7 +25758,9 @@
     "source": "GIMB",
     "destination": "NCJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 2341.6,
     "classes": [
       "SL",
@@ -25634,7 +26187,10 @@
     "source": "JAM",
     "destination": "TEN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 2432.1,
     "classes": [
       "SL",
@@ -25917,7 +26473,14 @@
     "source": "MAQ",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 620.3,
     "classes": [
       "SL",
@@ -26062,7 +26625,14 @@
     "source": "KGQ",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 586.4,
     "classes": [
       "SL",
@@ -26201,7 +26771,9 @@
     "source": "GIMB",
     "destination": "TEN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 2401.2,
     "classes": [
       "SL",
@@ -26422,7 +26994,10 @@
     "source": "MAS",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue",
+      "Fri"
+    ],
     "distanceKm": 906,
     "classes": [
       "1A",
@@ -26541,7 +27116,15 @@
     "source": "DBRG",
     "destination": "CAPE",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 4154.4,
     "classes": [
       "SL",
@@ -26984,7 +27567,9 @@
     "source": "BSP",
     "destination": "TEN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 2491.5,
     "classes": [
       "SL",
@@ -27259,7 +27844,9 @@
     "source": "NZM",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 2842.7,
     "classes": [
       "SL",
@@ -27522,7 +28109,10 @@
     "source": "SHM",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue"
+    ],
     "distanceKm": 2559.7,
     "classes": [
       "SL",
@@ -27833,7 +28423,9 @@
     "source": "NZM",
     "destination": "TVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 2854.7,
     "classes": [
       "SL",
@@ -28102,7 +28694,15 @@
     "source": "NIL",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 384.1,
     "classes": [
       "SL",
@@ -28313,7 +28913,9 @@
     "source": "CHZ",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 1546,
     "classes": [
       "SL",
@@ -28578,7 +29180,9 @@
     "source": "SMVB",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 813.3,
     "classes": [
       "SL",
@@ -28783,7 +29387,9 @@
     "source": "SMVB",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 813.3,
     "classes": [
       "SL",
@@ -28988,7 +29594,9 @@
     "source": "SMVB",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 813.3,
     "classes": [
       "SL",
@@ -29187,7 +29795,15 @@
     "source": "MDU",
     "destination": "GUV",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 518.3,
     "classes": [
       "SL",
@@ -29596,7 +30212,10 @@
     "source": "VLNK",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue"
+    ],
     "distanceKm": 689.9,
     "classes": [
       "SL",
@@ -29879,7 +30498,15 @@
     "source": "TN",
     "destination": "PGT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 535.3,
     "classes": [
       "SL",
@@ -30216,7 +30843,9 @@
     "source": "QLN",
     "destination": "VSKP",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 1575.1,
     "classes": [
       "SL",
@@ -30493,7 +31122,14 @@
     "source": "QLN",
     "destination": "ALLP",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 84.2,
     "classes": [
       "2S"
@@ -30622,7 +31258,14 @@
     "source": "QLN",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -30833,7 +31476,14 @@
     "source": "QLN",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -31044,7 +31694,14 @@
     "source": "QLN",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -31225,7 +31882,15 @@
     "source": "QLN",
     "destination": "ALLP",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 84.2,
     "classes": [
       "SL"
@@ -31370,7 +32035,15 @@
     "source": "QLN",
     "destination": "KTYM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 96,
     "classes": [
       "SL"
@@ -31515,7 +32188,15 @@
     "source": "QLN",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -31726,7 +32407,9 @@
     "source": "QLN",
     "destination": "UBL",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 1232.3,
     "classes": [
       "SL",
@@ -31961,7 +32644,15 @@
     "source": "QLN",
     "destination": "TBM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 736.3,
     "classes": [
       "SL",
@@ -32178,7 +32869,15 @@
     "source": "GUV",
     "destination": "MDU",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 518.3,
     "classes": [
       "SL",
@@ -32623,7 +33322,10 @@
     "source": "ERS",
     "destination": "VLNK",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Sat"
+    ],
     "distanceKm": 689.9,
     "classes": [
       "SL",
@@ -32906,7 +33608,15 @@
     "source": "PGT",
     "destination": "TN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 535.3,
     "classes": [
       "SL",
@@ -33243,7 +33953,15 @@
     "source": "QLN",
     "destination": "PUU",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 44.3,
     "classes": [
       "SL"
@@ -33364,7 +34082,15 @@
     "source": "QLN",
     "destination": "PUU",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 44.3,
     "classes": [
       "SL"
@@ -33485,7 +34211,9 @@
     "source": "TVCN",
     "destination": "MS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 903.7,
     "classes": [
       "2S"
@@ -33632,7 +34360,9 @@
     "source": "QLN",
     "destination": "MAS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 840.6,
     "classes": [
       "2S"
@@ -33791,7 +34521,9 @@
     "source": "QLN",
     "destination": "CHZ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 1559.2,
     "classes": [
       "2S"
@@ -34058,7 +34790,9 @@
     "source": "QLN",
     "destination": "NED",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 1781.4,
     "classes": [
       "2S"
@@ -34337,7 +35071,10 @@
     "source": "TVCN",
     "destination": "LTT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Thu"
+    ],
     "distanceKm": 1503.2,
     "classes": [
       "3A"
@@ -34518,7 +35255,11 @@
     "source": "TVCN",
     "destination": "YPR",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
     "distanceKm": 801.1,
     "classes": [
       "3A"
@@ -34669,7 +35410,9 @@
     "source": "TVCN",
     "destination": "UBL",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 1289.8,
     "classes": [
       "SL",
@@ -34896,7 +35639,9 @@
     "source": "TVCN",
     "destination": "SGNR",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 3014.9,
     "classes": [
       "SL",
@@ -35287,7 +36032,10 @@
     "source": "TVCN",
     "destination": "SMVB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu",
+      "Sat"
+    ],
     "distanceKm": 826.1,
     "classes": [
       "SL",
@@ -35460,7 +36208,9 @@
     "source": "TVCN",
     "destination": "YPR",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 842.5,
     "classes": [
       "SL",
@@ -35633,7 +36383,10 @@
     "source": "QLN",
     "destination": "TPTY",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed",
+      "Sat"
+    ],
     "distanceKm": 828.6,
     "classes": [
       "SL",
@@ -35826,7 +36579,9 @@
     "source": "TVCN",
     "destination": "BVC",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 2261.1,
     "classes": [
       "SL",
@@ -36157,7 +36912,10 @@
     "source": "TVCN",
     "destination": "LTT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Thu"
+    ],
     "distanceKm": 1503.2,
     "classes": [
       "SL",
@@ -36414,7 +37172,10 @@
     "source": "TVCN",
     "destination": "KRBA",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Thu"
+    ],
     "distanceKm": 2502.3,
     "classes": [
       "SL",
@@ -36821,7 +37582,10 @@
     "source": "TVCN",
     "destination": "CDG",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Sat"
+    ],
     "distanceKm": 3086.9,
     "classes": [
       "SL",
@@ -37056,7 +37820,9 @@
     "source": "TVCN",
     "destination": "ASR",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 3291.1,
     "classes": [
       "SL",
@@ -37313,7 +38079,11 @@
     "source": "TVCN",
     "destination": "GKP",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue",
+      "Wed"
+    ],
     "distanceKm": 3236.1,
     "classes": [
       "SL",
@@ -37756,7 +38526,15 @@
     "source": "TVCN",
     "destination": "MYS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 961,
     "classes": [
       "SL",
@@ -37997,7 +38775,10 @@
     "source": "TVCN",
     "destination": "MAJN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu",
+      "Sat"
+    ],
     "distanceKm": 614.5,
     "classes": [
       "SL",
@@ -38148,7 +38929,9 @@
     "source": "TVCN",
     "destination": "PBR",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 2410.8,
     "classes": [
       "SL",
@@ -38429,7 +39212,9 @@
     "source": "TVCN",
     "destination": "INDB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 2286.8,
     "classes": [
       "SL",
@@ -38710,7 +39495,9 @@
     "source": "TVCN",
     "destination": "INDB",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 2641.5,
     "classes": [
       "SL",
@@ -39093,7 +39880,9 @@
     "source": "TVCN",
     "destination": "YNRK",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Fri"
+    ],
     "distanceKm": 3109.7,
     "classes": [
       "SL",
@@ -39356,7 +40145,9 @@
     "source": "VSKP",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 1575.1,
     "classes": [
       "SL",
@@ -39633,7 +40424,14 @@
     "source": "ALLP",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 84.2,
     "classes": [
       "2S"
@@ -39762,7 +40560,15 @@
     "source": "KTYM",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 96,
     "classes": [
       "2S"
@@ -39891,7 +40697,14 @@
     "source": "ERS",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -40102,7 +40915,14 @@
     "source": "ERS",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -40313,7 +41133,14 @@
     "source": "ERS",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 141.4,
     "classes": [
       "SL"
@@ -40476,7 +41303,15 @@
     "source": "ALLP",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 84.2,
     "classes": [
       "SL"
@@ -40621,7 +41456,15 @@
     "source": "KTYM",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 96,
     "classes": [
       "SL"
@@ -40766,7 +41609,15 @@
     "source": "ERS",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 155.7,
     "classes": [
       "SL"
@@ -40977,7 +41828,9 @@
     "source": "HYB",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 1485.7,
     "classes": [
       "SL",
@@ -41272,7 +42125,9 @@
     "source": "UBL",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 1232.3,
     "classes": [
       "SL",
@@ -41507,7 +42362,15 @@
     "source": "TBM",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 736.3,
     "classes": [
       "SL",
@@ -41724,7 +42587,15 @@
     "source": "PUU",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 44.3,
     "classes": [
       "SL"
@@ -41845,7 +42716,15 @@
     "source": "PUU",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 44.3,
     "classes": [
       "SL"
@@ -41966,7 +42845,9 @@
     "source": "MAS",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 840.6,
     "classes": [
       "2S"
@@ -42125,7 +43006,9 @@
     "source": "SKZR",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 1582.5,
     "classes": [
       "2S"
@@ -42374,7 +43257,9 @@
     "source": "CHZ",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sat"
+    ],
     "distanceKm": 1559.2,
     "classes": [
       "2S"
@@ -42641,7 +43526,10 @@
     "source": "LTT",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon",
+      "Fri"
+    ],
     "distanceKm": 1503.2,
     "classes": [
       "3A"
@@ -42822,7 +43710,11 @@
     "source": "YPR",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Tue",
+      "Thu"
+    ],
     "distanceKm": 801.1,
     "classes": [
       "3A"
@@ -42973,7 +43865,9 @@
     "source": "UBL",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed"
+    ],
     "distanceKm": 1289.8,
     "classes": [
       "SL",
@@ -43206,7 +44100,9 @@
     "source": "SGNR",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 3016.7,
     "classes": [
       "SL",
@@ -43603,7 +44499,10 @@
     "source": "SMVB",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Fri"
+    ],
     "distanceKm": 826.1,
     "classes": [
       "SL",
@@ -43782,7 +44681,9 @@
     "source": "YPR",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 842.5,
     "classes": [
       "SL",
@@ -43955,7 +44856,10 @@
     "source": "TPTY",
     "destination": "QLN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue",
+      "Fri"
+    ],
     "distanceKm": 828.6,
     "classes": [
       "SL",
@@ -44148,7 +45052,9 @@
     "source": "BVC",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 2261.1,
     "classes": [
       "SL",
@@ -44479,7 +45385,10 @@
     "source": "LTT",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue",
+      "Sat"
+    ],
     "distanceKm": 1503.2,
     "classes": [
       "SL",
@@ -44736,7 +45645,10 @@
     "source": "KRBA",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed",
+      "Sat"
+    ],
     "distanceKm": 2502.3,
     "classes": [
       "SL",
@@ -45143,7 +46055,15 @@
     "source": "KYJ",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 114.8,
     "classes": [
       "SL",
@@ -45282,7 +46202,15 @@
     "source": "ERS",
     "destination": "KYJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 114.8,
     "classes": [
       "SL",
@@ -45421,7 +46349,10 @@
     "source": "CDG",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Wed",
+      "Fri"
+    ],
     "distanceKm": 3086.9,
     "classes": [
       "SL",
@@ -45656,7 +46587,9 @@
     "source": "ASR",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun"
+    ],
     "distanceKm": 3291.1,
     "classes": [
       "SL",
@@ -45913,7 +46846,11 @@
     "source": "GKP",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Thu",
+      "Fri"
+    ],
     "distanceKm": 3236.1,
     "classes": [
       "SL",
@@ -46362,7 +47299,15 @@
     "source": "MYS",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 961,
     "classes": [
       "SL",
@@ -46603,7 +47548,10 @@
     "source": "MAJN",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Fri"
+    ],
     "distanceKm": 614.4,
     "classes": [
       "SL",
@@ -46754,7 +47702,9 @@
     "source": "PBR",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Thu"
+    ],
     "distanceKm": 2410.8,
     "classes": [
       "SL",
@@ -47035,7 +47985,9 @@
     "source": "INDB",
     "destination": "TVCN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Mon"
+    ],
     "distanceKm": 2641.5,
     "classes": [
       "SL",
@@ -47424,7 +48376,15 @@
     "source": "ERS",
     "destination": "KYJ",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 100.5,
     "classes": [
       "2S"
@@ -47583,7 +48543,15 @@
     "source": "ALLP",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 57.2,
     "classes": [
       "2S"
@@ -47700,7 +48668,15 @@
     "source": "KYJ",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 100.5,
     "classes": [
       "2S"
@@ -47859,7 +48835,15 @@
     "source": "ALLP",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 57.2,
     "classes": [
       "SL"
@@ -47992,7 +48976,15 @@
     "source": "ALLP",
     "destination": "DHN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 2530.6,
     "classes": [
       "SL",
@@ -48611,7 +49603,15 @@
     "source": "ALLP",
     "destination": "CAN",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 339.5,
     "classes": [
       "SL",
@@ -48852,7 +49852,15 @@
     "source": "ALLP",
     "destination": "MAS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 757.2,
     "classes": [
       "SL",
@@ -49091,7 +50099,15 @@
     "source": "KTYM",
     "destination": "NIL",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 230.6,
     "classes": [
       "SL",
@@ -49350,7 +50366,15 @@
     "source": "KTYM",
     "destination": "ERS",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 59.7,
     "classes": [
       "2S"
@@ -49449,7 +50473,9 @@
     "source": "KTYM",
     "destination": "CCT",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Tue"
+    ],
     "distanceKm": 1318.6,
     "classes": [
       "2S"
@@ -49650,7 +50676,15 @@
     "source": "NIL",
     "destination": "KTYM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 230.6,
     "classes": [
       "SL",
@@ -49903,7 +50937,15 @@
     "source": "ERS",
     "destination": "KTYM",
     "runsPerWeek": 0,
-    "runningDays": [],
+    "runningDays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "distanceKm": 59.7,
     "classes": [
       "2S"

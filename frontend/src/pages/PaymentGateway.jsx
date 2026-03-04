@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api/train.api";
-import MiniFooter from "../components/common/MiniFooter";
 import { QRCodeSVG } from "qrcode.react";
 
 export default function PaymentGateway() {
@@ -561,7 +560,6 @@ export default function PaymentGateway() {
                     </div>
                 </div>
             </div>
-            <MiniFooter />
         </div>
     );
 }

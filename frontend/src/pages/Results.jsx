@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import api from "../api/train.api";
-import MiniFooter from "../components/common/MiniFooter";
 
 export default function Results() {
     const [searchParams] = useSearchParams();
@@ -73,7 +72,15 @@ export default function Results() {
 
                         // API returns filtered list already, but we can filter by day if needed
                         if (dateParam) {
-                            const dateObj = new Date(dateParam);
+                            // Ensure date is treated accurately without local timezone shift 
+                            // Using the raw string constructor 'YYYY-MM-DD' behaves differently depending on system.
+                            // Convert to standardized parts
+                            const dateParts = dateParam.split('-');
+                            const year = parseInt(dateParts[0], 10);
+                            const month = parseInt(dateParts[1], 10) - 1; // months are 0-indexed
+                            const day = parseInt(dateParts[2], 10);
+                            const dateObj = new Date(year, month, day);
+
                             const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                             const shortDay = days[dateObj.getDay()];
 
@@ -94,8 +101,9 @@ export default function Results() {
                     }
                 }
 
-                // Filter out trains that have already departed if journey date is today
-                // For Train Mode, skip aggressive time filtering to always show the train
+                // Time filtering based on current time is disabled as requested by the user, 
+                // so we can see all trains that run on the selected day regardless of current hour.
+                /*
                 if (dateParam && searchMode !== "train") {
                     const journeyDate = new Date(dateParam);
                     const now = new Date();
@@ -111,6 +119,7 @@ export default function Results() {
                         });
                     }
                 }
+                */
 
                 setResults(filtered);
 
@@ -214,7 +223,7 @@ export default function Results() {
     return (
         <div className="min-h-screen bg-gray-900 pb-10 text-gray-100 relative">
             {/* Search Header - Seamless Dark Theme, No Blue Border */}
-            <div className="bg-gray-900 pt-28 pb-32 px-4">
+            <div className="bg-gray-900 pt-40 pb-32 px-4">
                 <div className="max-w-6xl mx-auto">
                     <button
                         onClick={() => navigate("/")}
@@ -272,11 +281,11 @@ export default function Results() {
                                         {/* Top Row: Header */}
                                         <div className="flex flex-col sm:flex-row justify-between items-start mb-4 sm:mb-6 gap-3 sm:gap-4">
                                             <div className="min-w-0 flex-1">
-                                                <div className="flex items-center gap-2 sm:gap-3 mb-1 flex-wrap">
+                                                <div className="flex items-baseline gap-2 sm:gap-3 mb-1 flex-wrap">
                                                     <h3 className="text-lg sm:text-xl font-bold text-white truncate">{train.trainName}</h3>
-                                                    <span className="bg-[#111] border border-gray-700 text-gray-300 text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded font-mono shrink-0">#{train.trainNumber}</span>
+                                                    <span className="text-gray-400 text-sm sm:text-base font-medium shrink-0">#{train.trainNumber}</span>
                                                 </div>
-                                                <p className="text-xs sm:text-sm text-gray-400 truncate">{train.type || 'Express'} • Runs: {train.runningDays?.length ? train.runningDays.join(', ') : 'Daily'}</p>
+                                                <p className="text-xs sm:text-sm text-gray-400 truncate">Runs: {train.runningDays?.length ? train.runningDays.join(', ') : 'Daily'}</p>
                                             </div>
 
                                             {/* Times Display */}
@@ -304,15 +313,39 @@ export default function Results() {
                                         {/* Availability - Horizontal scroll */}
                                         <div className="flex gap-3 overflow-x-auto pb-2 custom-scrollbar">
                                             {(fareMap[train.trainNumber]?.fares ? Object.keys(fareMap[train.trainNumber].fares) : ["SL", "3A", "2A", "1A"]).map(cls => {
-                                                // Fallback to mock generator only if backend doesn't have the layout mapped
+                                                // Hide non-bookable classes entirely (pantry car, guard van)
+                                                if (['PC', 'SLR'].includes(cls)) return null;
+
                                                 const avail = availMap[train.trainNumber]?.[cls] || getRealAvailability(train.trainNumber, cls);
                                                 const navFrom = searchMode === 'train' ? train.source : fromParam;
                                                 const navTo = searchMode === 'train' ? train.destination : toParam;
 
+                                                // GS / UR — unreserved, skip seat layout, go directly to passenger details
+                                                const isUnreserved = ['GS', 'UR'].includes(cls);
+
+                                                const handleClassClick = () => {
+                                                    if (isUnreserved) {
+                                                        navigate('/payment', {
+                                                            state: {
+                                                                train: { trainNumber: train.trainNumber, trainName: train.trainName, source: train.source, destination: train.destination },
+                                                                selectedSeats: [],
+                                                                classType: cls,
+                                                                journeyDate: dateParam ? dateParam.split('T')[0] : new Date().toISOString().split('T')[0],
+                                                                source: navFrom,
+                                                                destination: navTo,
+                                                                isUnreserved: true,
+                                                                passengerCount: Number(searchParams.get('passengers') || 1)
+                                                            }
+                                                        });
+                                                    } else {
+                                                        navigate(`/seat-layout/${train.trainNumber}/${cls}?date=${dateParam}&from=${navFrom}&to=${navTo}&passengers=${searchParams.get('passengers') || 1}`);
+                                                    }
+                                                };
+
                                                 return (
                                                     <button
                                                         key={cls}
-                                                        onClick={() => navigate(`/seat-layout/${train.trainNumber}/${cls}?date=${dateParam}&from=${navFrom}&to=${navTo}&passengers=${searchParams.get('passengers') || 1}`)}
+                                                        onClick={handleClassClick}
                                                         className={`rounded-xl border p-3 flex flex-col justify-between hover:scale-105 transition duration-200 text-left cursor-pointer min-w-[120px] sm:min-w-[140px] shrink-0
                                                             ${avail.status === "AVAILABLE" ? "bg-green-500/10 border-green-500/30" : "bg-red-500/10 border-red-500/30"}
                                                         `}
@@ -335,7 +368,6 @@ export default function Results() {
                     </div>
                 )}
             </div>
-            <MiniFooter />
         </div>
     );
 }

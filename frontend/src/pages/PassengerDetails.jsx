@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api/train.api";
-import MiniFooter from "../components/common/MiniFooter";
 
 export default function PassengerDetails() {
   const location = useLocation();
@@ -13,7 +12,7 @@ export default function PassengerDetails() {
     setState(location.state);
   }, [location.state]);
 
-  const { train, selectedSeats, classType, journeyDate, source, destination } = state || {};
+  const { train, selectedSeats, classType, journeyDate, source, destination, isUnreserved, passengerCount: initPassengerCount } = state || {};
 
   // Extract station code from "Name (CODE)" format
   const extractCode = (str) => {
@@ -22,30 +21,62 @@ export default function PassengerDetails() {
     return match ? match[1] : str;
   };
 
+  // For unreserved: user picks how many passengers (no seat map)
+  const [unreservedCount, setUnreservedCount] = useState(initPassengerCount || 1);
   const [passengers, setPassengers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [farePerPerson, setFarePerPerson] = useState(0);
+  const [fareBreakdown, setFareBreakdown] = useState(null);
 
+  // Build passenger stubs
   useEffect(() => {
-    // Wait until state actually loads
     if (!state) return;
 
-    if (!selectedSeats || selectedSeats.length === 0) {
-      navigate("/"); // Redirect if no seats mapped
-      return;
+    if (isUnreserved) {
+      // Initialise stubs based on unreservedCount (no seat assignments)
+      const stubs = Array.from({ length: unreservedCount }, (_, i) => ({
+        id: i,
+        seatNumber: null,
+        coachId: null,
+        name: "",
+        age: "",
+        gender: "Gender",
+        berth: null,
+      }));
+      setPassengers(stubs);
+    } else {
+      if (!selectedSeats || selectedSeats.length === 0) {
+        navigate("/"); // Redirect if no seats selected
+        return;
+      }
+      const initialPassengers = selectedSeats.map((seat, index) => ({
+        id: index,
+        seatNumber: seat.seatNumber,
+        coachId: seat.coachId,
+        name: "",
+        age: "",
+        gender: "Gender",
+        berth: seat.berthType,
+      }));
+      setPassengers(initialPassengers);
     }
-    // Initialize passengers based on selected seats
-    const initialPassengers = selectedSeats.map((seat, index) => ({
-      id: index,
-      seatNumber: seat.seatNumber,
-      coachId: seat.coachId,
-      name: "",
-      age: "",
-      gender: "Gender",
-      berth: seat.berthType
+  }, [selectedSeats, navigate, isUnreserved, unreservedCount]);
+
+  // Re-build stubs when unreservedCount changes
+  useEffect(() => {
+    if (!isUnreserved) return;
+    const stubs = Array.from({ length: unreservedCount }, (_, i) => ({
+      id: i,
+      seatNumber: null,
+      coachId: null,
+      name: passengers[i]?.name || "",
+      age: passengers[i]?.age || "",
+      gender: passengers[i]?.gender || "Gender",
+      berth: null,
     }));
-    setPassengers(initialPassengers);
-  }, [selectedSeats, navigate]);
+    setPassengers(stubs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unreservedCount, isUnreserved]);
 
   // Fetch real fare
   useEffect(() => {
@@ -57,18 +88,18 @@ export default function PassengerDetails() {
         if (data.fares && data.fares[classType]) {
           setFarePerPerson(data.fares[classType]);
         }
+        if (data.fareDetails && data.fareDetails[classType]) {
+          setFareBreakdown(data.fareDetails[classType]);
+        }
       })
-      .catch(() => setFarePerPerson(500)); // fallback
-  }, [train, classType, source, destination]);
-
-  // (Removed beforeunload prompt so user can reload freely)
+      .catch(() => setFarePerPerson(isUnreserved ? 50 : 500));
+  }, [train, classType, source, destination, isUnreserved]);
 
   const handleChange = (id, field, value) => {
     setPassengers(passengers.map(p => p.id === id ? { ...p, [field]: value } : p));
   };
 
   const handleSubmit = async () => {
-
     const payload = {
       trainNumber: train.trainNumber,
       journeyDate,
@@ -77,13 +108,13 @@ export default function PassengerDetails() {
       destination: extractCode(destination || train.destination),
       trainSchedule: train.schedule || [],
       passengers: passengers.map(p => ({
-        name: p.name || `Passenger ${p.seatNumber}`,
+        name: p.name || `Passenger ${p.id + 1}`,
         age: p.age ? parseInt(p.age) : 25,
         gender: p.gender !== "Gender" ? p.gender : "Male",
         seatNumber: p.seatNumber,
         coachId: p.coachId,
-        berthPreference: p.berth
-      }))
+        berthPreference: p.berth,
+      })),
     };
 
     const baseFare = farePerPerson * passengers.length;
@@ -140,9 +171,15 @@ export default function PassengerDetails() {
 
           <div className="flex flex-col md:flex-row justify-between items-center relative z-10 px-2 sm:px-4 md:px-6 gap-4">
             <div className="text-center md:text-left">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">{actualTrain?.trainName || "Express Train"} <span className="text-orange-500">#{actualTrain?.trainNumber || train?.trainNumber}</span></h1>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
+                {actualTrain?.trainName || "Express Train"}{" "}
+                <span className="text-orange-500">#{actualTrain?.trainNumber || train?.trainNumber}</span>
+              </h1>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400 font-mono">
                 <span className="bg-[#1D2332] text-gray-200 px-2 sm:px-3 py-1 rounded-full border border-gray-700">{classType} Class</span>
+                {isUnreserved && (
+                  <span className="bg-yellow-900/40 text-yellow-400 px-2 sm:px-3 py-1 rounded-full border border-yellow-700">Unreserved</span>
+                )}
                 <span>•</span>
                 <span>{new Date(journeyDate).toDateString()}</span>
                 <span className="hidden sm:inline">•</span>
@@ -151,9 +188,27 @@ export default function PassengerDetails() {
                 </span>
               </div>
             </div>
+
+            {/* Passenger count — editable for unreserved, fixed for reserved */}
             <div className="text-center md:text-right border-t border-gray-700/50 md:border-t-0 md:border-l pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
-              <div className="text-2xl sm:text-3xl font-bold text-white">{selectedSeats.length} <span className="text-lg font-normal text-gray-400">Seats</span></div>
-              <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mt-1">Selected</div>
+              <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mb-1">Passengers</div>
+              {isUnreserved ? (
+                <div className="flex items-center justify-center md:justify-end gap-2">
+                  <button
+                    onClick={() => setUnreservedCount(c => Math.max(1, c - 1))}
+                    className="w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 text-white font-bold flex items-center justify-center transition"
+                  >−</button>
+                  <span className="text-2xl font-bold text-white w-8 text-center">{unreservedCount}</span>
+                  <button
+                    onClick={() => setUnreservedCount(c => Math.min(6, c + 1))}
+                    className="w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 text-white font-bold flex items-center justify-center transition"
+                  >+</button>
+                </div>
+              ) : (
+                <div className="text-2xl sm:text-3xl font-bold text-white">
+                  {passengers.length} <span className="text-lg font-normal text-gray-400">Seats</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -170,7 +225,17 @@ export default function PassengerDetails() {
               <div key={p.id} className="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-md">
                 <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-700">
                   <span className="font-semibold text-orange-400">Passenger {idx + 1}</span>
-                  <span className="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300">Seat {p.seatNumber} ({p.coachId})</span>
+                  {/* Only show seat chip for reserved classes */}
+                  {!isUnreserved && p.seatNumber && (
+                    <span className="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300">
+                      Seat {p.seatNumber} ({p.coachId})
+                    </span>
+                  )}
+                  {isUnreserved && (
+                    <span className="text-xs bg-yellow-900/40 border border-yellow-700/50 px-2 py-1 rounded text-yellow-400">
+                      Unreserved — no seat
+                    </span>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -218,21 +283,67 @@ export default function PassengerDetails() {
           <div className="md:col-span-1">
             <div className="hidden md:block h-[44px]"></div>
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 sticky top-24">
-              <h3 className="text-lg font-semibold mb-4 text-white">Payment Details</h3>
+              <h3 className="text-lg font-semibold mb-1 text-white">Fare Breakdown</h3>
+              {fareBreakdown && (
+                <p className="text-[10px] text-gray-500 mb-4">
+                  {fareBreakdown.distanceKm} km · ₹{fareBreakdown.ratePerKm}/km · {fareBreakdown.label}
+                </p>
+              )}
 
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-sm text-gray-400">
-                  <span>Ticket Fare (x{passengers.length})</span>
-                  <span>₹{passengers.length * 500}</span>
-                </div>
-                <div className="flex justify-between text-sm text-gray-400">
-                  <span>Service Charge</span>
+              <div className="space-y-2 mb-4 text-sm">
+                {fareBreakdown ? (
+                  <>
+                    <div className="flex justify-between text-gray-400">
+                      <span>Base Fare ({fareBreakdown.distanceKm} km × ₹{fareBreakdown.ratePerKm})</span>
+                      <span>₹{fareBreakdown.baseFare}</span>
+                    </div>
+                    <div className="flex justify-between text-gray-400">
+                      <span>Fuel Adjustment (5%)</span>
+                      <span>₹{fareBreakdown.fuelAdjustment}</span>
+                    </div>
+                    {fareBreakdown.reservationCharge > 0 && (
+                      <div className="flex justify-between text-gray-400">
+                        <span>Reservation Charge</span>
+                        <span>₹{fareBreakdown.reservationCharge}</span>
+                      </div>
+                    )}
+                    {fareBreakdown.superfastCharge > 0 && (
+                      <div className="flex justify-between text-gray-400">
+                        <span>Superfast Charge</span>
+                        <span>₹{fareBreakdown.superfastCharge}</span>
+                      </div>
+                    )}
+                    {fareBreakdown.gst > 0 && (
+                      <div className="flex justify-between text-gray-400">
+                        <span>GST (5% on AC)</span>
+                        <span>₹{fareBreakdown.gst}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-gray-300 border-t border-gray-700 pt-2">
+                      <span>Fare / Passenger</span>
+                      <span className="font-semibold">₹{fareBreakdown.totalFare}</span>
+                    </div>
+                    {passengers.length > 1 && (
+                      <div className="flex justify-between text-gray-400">
+                        <span>× {passengers.length} passengers</span>
+                        <span>₹{fareBreakdown.totalFare * passengers.length}</span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="flex justify-between text-gray-400">
+                    <span>Ticket Fare (×{passengers.length})</span>
+                    <span>₹{passengers.length * (farePerPerson || 0)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between text-gray-400">
+                  <span>Convenience Fee</span>
                   <span>₹20</span>
                 </div>
                 <div className="h-px bg-gray-700 my-2"></div>
                 <div className="flex justify-between font-bold text-white text-lg">
                   <span>Total</span>
-                  <span>₹{passengers.length * 500 + 20}</span>
+                  <span>₹{(fareBreakdown ? fareBreakdown.totalFare * passengers.length : passengers.length * (farePerPerson || 0)) + 20}</span>
                 </div>
               </div>
 
@@ -243,12 +354,11 @@ export default function PassengerDetails() {
               >
                 {loading ? "Processing..." : "Proceed to Pay"}
               </button>
-              <p className="text-xs text-center text-gray-500 mt-4">Safe & Secure Payment</p>
+              <p className="text-xs text-center text-gray-500 mt-4">Safe &amp; Secure Payment</p>
             </div>
           </div>
         </div>
       </div>
-      <MiniFooter />
     </div>
   );
 }

@@ -48,17 +48,31 @@ export async function getTrainsBetween(req, res) {
 
         const matchStation = (s, codeOrName) => {
             let query = codeOrName.toLowerCase();
-            const aliases = { 'tvla': 'trvl', 'thiruvalla': 'trvl', 'chengannur': 'cngr' };
-            if (aliases[query]) query = aliases[query];
-            if (query.length <= 4) return s.stationCode.toLowerCase() === query;
-            return s.stationCode.toLowerCase() === query || s.stationName.toLowerCase().includes(query);
+            const sCode = s.stationCode.toLowerCase();
+
+            if (query.length <= 4) return sCode === query;
+            return sCode === query || s.stationName.toLowerCase().includes(query);
         };
 
         const results = dataStore.trains.filter(train => {
             if (!train.schedule) return false;
-            const sourceIndex = train.schedule.findIndex(s => matchStation(s, source));
-            const destIndex = train.schedule.findIndex(s => matchStation(s, destination));
-            return sourceIndex !== -1 && destIndex !== -1 && sourceIndex < destIndex;
+
+            // Get all possible source indices (rare, but maybe it visits multiple sister stations)
+            let sourceIndices = [];
+            let destIndices = [];
+
+            train.schedule.forEach((s, i) => {
+                if (matchStation(s, source)) sourceIndices.push(i);
+                if (matchStation(s, destination)) destIndices.push(i);
+            });
+
+            // Find at least one valid combination where source logic comes before dest
+            for (let src of sourceIndices) {
+                for (let dst of destIndices) {
+                    if (src < dst) return true;
+                }
+            }
+            return false;
         });
 
         // 1. Local Database Results
@@ -123,13 +137,30 @@ export async function searchStations(req, res) {
     if (!query || query.length < 2) return res.status(400).json({ error: "Query min 2 chars" });
 
     const lowerQuery = query.toLowerCase();
-    const results = [];
+
+    const exactMatches = [];
+    const startsWithMatches = [];
+    const includesMatches = [];
+
     for (const station of dataStore.stationsMap.values()) {
-        if (station.code.toLowerCase().includes(lowerQuery) || (station.name && station.name.toLowerCase().includes(lowerQuery))) {
-            results.push(station);
-            if (results.length >= 20) break;
+        const lowerCode = station.code.toLowerCase();
+        const lowerName = station.name ? station.name.toLowerCase() : "";
+
+        if (lowerCode === lowerQuery) {
+            exactMatches.push(station);
+        } else if (lowerCode.startsWith(lowerQuery) || lowerName.startsWith(lowerQuery)) {
+            startsWithMatches.push(station);
+        } else if (lowerCode.includes(lowerQuery) || lowerName.includes(lowerQuery)) {
+            includesMatches.push(station);
         }
     }
+
+    // Sort to prioritize exact matches > starts with > includes
+    let results = [...exactMatches, ...startsWithMatches, ...includesMatches];
+
+    // Limit to top 20 results
+    results = results.slice(0, 20);
+
     res.json(results);
 }
 
@@ -146,11 +177,14 @@ export async function getSeatLayout(req, res) {
     const processedCoaches = layout.coaches
         .filter(coach => !NON_BOOKABLE.has(coach.classCode))
         .map(coach => {
-            // Resolve totalSeats from coachTypesMap if not inline
+            // Resolve type info from coachTypesMap
             const coachType = coach.coachTypeId
                 ? dataStore.coachTypesMap.get(coach.coachTypeId)
                 : null;
             const totalSeats = coach.totalSeats ?? coachType?.totalSeats ?? 0;
+
+            // Expose rowStructure so the frontend can render accurate berth rows
+            const rowStructure = coachType?.layout?.rowStructure ?? null;
 
             const seats = (coach.seats && coach.seats.length > 0)
                 ? coach.seats
@@ -161,6 +195,7 @@ export async function getSeatLayout(req, res) {
                 classCode: coach.classCode,
                 coachTypeId: coach.coachTypeId,
                 totalSeats,
+                rowStructure,   // ← NEW: array of rows from coachTypes.json
                 seats
             };
         })
@@ -220,71 +255,145 @@ export async function getFare(req, res) {
     let source = req.query.source;
     let destination = req.query.destination;
 
-    // Calculate distance if missing
+    // ── Resolve distance from schedule ──────────────────────────────────────
     if (!distanceKm && source && destination) {
         const train = dataStore.trains.find(t => t.trainNumber === trainNumber);
-        if (train && train.schedule) {
-            const srcNode = train.schedule.find(s => s.stationCode.toLowerCase() === source.toLowerCase());
-            const dstNode = train.schedule.find(s => s.stationCode.toLowerCase() === destination.toLowerCase());
 
+        const strictMatch = (s, q) => {
+            const sCode = s.stationCode ? s.stationCode.toLowerCase() : '';
+            return sCode === q.toLowerCase();
+        };
+
+        if (train && train.schedule) {
+            const srcNode = train.schedule.find(s => strictMatch(s, source));
+            const dstNode = train.schedule.find(s => strictMatch(s, destination));
             if (srcNode && dstNode && dstNode.distanceFromSourceKm >= 0 && srcNode.distanceFromSourceKm >= 0) {
                 distanceKm = Math.abs(dstNode.distanceFromSourceKm - srcNode.distanceFromSourceKm);
             }
         }
     }
+    if (!distanceKm || distanceKm <= 0) distanceKm = 800; // sensible fallback
 
-    // Fallback distance based on typical 800km journey if unknown
-    if (!distanceKm || distanceKm <= 0) {
-        distanceKm = 800;
-    }
+    // --- Train Type Detection ---
+    const trainObj = dataStore.trains.find(t => t.trainNumber === trainNumber);
+    const tName = trainObj ? (trainObj.trainName || "").toUpperCase() : "";
+    const isOrdinary = tName.includes("MEMU") || tName.includes("PASSENGER") || tName.includes("DEMU");
+    const isSF = tName.includes("SF ") || tName.includes("SUPERFAST") || /^12|^22/.test(trainNumber);
 
-    // Base fare rates per km
-    const baseRates = {
-        '1A': 4.5, // 1st AC
-        '2A': 2.8, // 2nd AC
-        '3A': 2.0, // 3rd AC
-        'CC': 1.8, // AC Chair Car
-        'SL': 0.8, // Sleeper
-        '2S': 0.5, // Second Sitting
-        'General': 0.3
+    // --- Distance-Based Base Fare Computation ---
+    const getOrdinaryBase = (dist) => {
+        if (dist <= 15) return 5;
+        if (dist <= 45) return 10;
+        if (dist <= 65) return 15;
+        if (dist <= 100) return 20;
+        if (dist <= 130) return 25;
+        if (dist <= 165) return 30;
+        if (dist <= 200) return 35;
+        if (dist <= 300) return 45;
+        if (dist <= 400) return 55;
+        if (dist <= 500) return 65;
+
+        let f = 75, r = dist - 500;
+        if (r > 0) { let c = Math.min(250, r); f += Math.ceil(c / 100) * 10; r -= c; }
+        if (r > 0) { let c = Math.min(250, r); f += Math.ceil(c / 100) * 15; r -= c; }
+        if (r > 0) { let c = Math.min(500, r); f += Math.ceil(c / 100) * 20; r -= c; }
+        if (r > 0) { f += Math.ceil(r / 100) * 25; }
+        return f;
     };
 
-    // Calculate fares
-    const fares = {};
+    const getReservedBase = (dist, cls) => {
+        const maps = {
+            'SL': { base: [130, 170, 210, 250, 290], add: [60, 80, 100, 120, 140, 2] },
+            '3A': { base: [430, 530, 650, 750, 860], add: [110, 150, 190, 230, 270, 4] },
+            '2A': { base: [730, 730, 900, 1040, 1190], add: [160, 210, 270, 330, 390, 6] },
+            '1A': { base: [1030, 1030, 1270, 1470, 1680], add: [230, 300, 380, 470, 560, 8] },
+            'CC': { base: [300, 400, 500, 580, 660], add: [110, 150, 190, 230, 270, 4] }
+        };
+        let targetCls = maps[cls] ? cls : 'SL';
+        if (cls === '3E') targetCls = '3A';
+        if (cls === 'EC') targetCls = '1A';
 
-    // Get train layout to know which classes exist (exclude non-bookable)
+        const { base, add } = maps[targetCls];
+        if (dist <= 100) return base[0];
+        if (dist <= 200) return base[1];
+        if (dist <= 300) return base[2];
+        if (dist <= 400) return base[3];
+        if (dist <= 500) return base[4];
+
+        let f = base[4], r = dist - 500;
+        if (r > 0) { let c = Math.min(250, r); f += Math.ceil(c / 100) * add[0]; r -= c; }
+        if (r > 0) { let c = Math.min(250, r); f += Math.ceil(c / 100) * add[1]; r -= c; }
+        if (r > 0) { let c = Math.min(500, r); f += Math.ceil(c / 100) * add[2]; r -= c; }
+        if (r > 0) { let c = Math.min(1000, r); f += Math.ceil(c / 100) * add[3]; r -= c; }
+        if (r > 0) { let c = Math.min(2500, r); f += Math.ceil(c / 100) * add[4]; r -= c; }
+        if (r > 0) { f += r * add[5]; }
+
+        if (cls === '3E') f = Math.round(f * 0.95);
+        if (cls === 'EC') f = Math.round(f * 0.8);
+        return f;
+    };
+
+    // ── Determine which classes this train actually has ──────────────────────
     const layout = dataStore.seatLayouts.find(t => t.trainNumber === trainNumber);
-
-    let classes = ['SL', '3A', '2A', '1A']; // Default
+    let classes = ['SL', '3A', '2A', '1A']; // default
     if (layout) {
         const layoutClasses = [...new Set(
             layout.coaches
-                .filter(c => !NON_BOOKABLE.has(c.classCode))
+                .filter(c => !NON_BOOKABLE.has(c.classCode) || ['GS', 'UR', '2S'].includes(c.classCode))
                 .map(c => c.classCode)
                 .filter(Boolean)
         )];
         if (layoutClasses.length > 0) classes = layoutClasses;
     }
 
+    const fareDetails = {};
+    const fares = {};           // backward-compat flat map  { cls: totalFare }
+
     classes.forEach(cls => {
-        const rate = baseRates[cls] || 1.0;
-        let fareAmount = Math.round(distanceKm * rate);
+        let baseFare = 0;
+        let resCharge = 0;
+        const isAC = ['1A', '2A', '3A', '3E', 'CC', 'EC'].includes(cls);
 
-        // Add flat base charges
-        let flatCharge = 50;
-        if (cls.includes('A') || cls === 'CC') flatCharge += 150; // AC charge
-        if (cls === '1A') flatCharge += 100;
+        if (['GS', 'UR', '2S'].includes(cls)) {
+            const ordBase = getOrdinaryBase(distanceKm);
+            baseFare = isOrdinary ? ordBase : Math.round(ordBase * 1.5);
+            resCharge = (cls === '2S') ? 15 : (isOrdinary ? 0 : 15);
+        } else {
+            baseFare = getReservedBase(distanceKm, cls);
+            resCharge = (cls === 'SL' || cls === '2S') ? 20 : 40;
+        }
 
-        // Round to nearest 5
-        fareAmount = Math.max(50, Math.ceil((fareAmount + flatCharge) / 5) * 5);
-        fares[cls] = fareAmount;
+        const sfCharge = isSF ? Math.round(baseFare * 0.30) : 0;
+        const fuelAdjustment = 0; // Standardized out based on updated table 
+
+        const preTax = baseFare + sfCharge + resCharge;
+        const gst = isAC ? Math.round(preTax * 0.05) : 0;  // 5% GST on AC
+
+        const totalFare = Math.max((['GS', 'UR'].includes(cls) && isOrdinary) ? 10 : 50, Math.ceil((preTax + gst) / 5) * 5); // round to ₹5
+
+        let ratePerKm = (totalFare / distanceKm).toFixed(2);
+
+        fareDetails[cls] = {
+            label: cls,
+            distanceKm: Math.round(distanceKm),
+            ratePerKm: Number(ratePerKm),
+            baseFare,
+            fuelAdjustment,
+            reservationCharge: resCharge,
+            superfastCharge: sfCharge,
+            gst,
+            totalFare
+        };
+        fares[cls] = totalFare;
     });
 
     res.json({
         trainNumber,
         source: source || 'UNKNOWN',
         destination: destination || 'UNKNOWN',
-        distanceKm,
-        fares
+        distanceKm: Math.round(distanceKm),
+        fares,          // flat { cls: totalFare }  ← backward compatible
+        fareDetails     // full breakdown per class  ← new
     });
 }
+

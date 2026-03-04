@@ -36,11 +36,7 @@ const loadData = () => {
                 }
             });
 
-            // Add custom manual override aliases so frontend autocomplete finds them
-            dataStore.stationsMap.set('TVLA', {
-                code: 'TRVL',
-                name: 'Thiruvalla (TVLA)'
-            });
+
 
             console.log(`[DataLoader] Extracted ${dataStore.stationsMap.size} unique stations.`);
         } else {

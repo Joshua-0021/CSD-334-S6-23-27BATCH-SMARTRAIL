@@ -3,6 +3,7 @@ import "./App.css";
 
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
+import MiniFooter from "./components/common/MiniFooter";
 import Hero from "./components/Hero";
 import BookingCard from "./components/Bookingcaard";
 import Pnrstatus from "./components/Pnrstatus";   // ✅ CORRECT
@@ -161,8 +162,12 @@ export default function App() {
   const isDark = theme === "dark";
   const navigate = useNavigate();
   const location = useLocation();
-  const isPaymentPage = location.pathname.startsWith('/payment');
-  const isSeatLayoutPage = location.pathname.startsWith('/seat-layout');
+
+  const isMiniFooterPage =
+    location.pathname.startsWith('/seat-layout') ||
+    location.pathname.startsWith('/payment') ||
+    location.pathname.startsWith('/results') ||
+    location.pathname.startsWith('/passenger-details');
 
   const swapStations = () => {
     const temp = fromStation;
@@ -254,7 +259,7 @@ export default function App() {
         </div>
       )}
 
-      <div className={`min-h-screen flex flex-col ${isPaymentPage ? '' : 'pt-[70px]'}`}>
+      <div className={`min-h-screen flex flex-col ${isMiniFooterPage ? '' : 'pt-[70px]'}`}>
         <main className="flex-grow">
           <Routes>
             <Route
@@ -288,7 +293,7 @@ export default function App() {
         </main>
       </div>
 
-      {!(isPaymentPage || isSeatLayoutPage) && <Footer />}
+      {isMiniFooterPage ? <MiniFooter /> : <Footer />}
     </div>
   );
 }
