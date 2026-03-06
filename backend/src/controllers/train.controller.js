@@ -1,9 +1,10 @@
 
 import { dataStore } from '../services/train.service.js';
 import { generateSeats } from '../services/seatLayout.service.js';
+import { supabase } from '../config/supabaseClient.js';
 
 // Classes that are not bookable and should be hidden from seat layout/availability
-const NON_BOOKABLE = new Set(['SLR', 'PANTRY', 'GS', 'UR']);
+const NON_BOOKABLE = new Set(['SLR', 'PANTRY']);
 
 // External API endpoints fallback removed
 export async function getTrainDetails(req, res) {
@@ -205,48 +206,111 @@ export async function getSeatLayout(req, res) {
 }
 
 export async function getAvailability(req, res) {
-    const layout = dataStore.seatLayouts.find(t => t.trainNumber === req.params.trainNumber);
-    if (!layout) {
-        return res.json({ trainNumber: req.params.trainNumber, availability: {} });
-    }
+    try {
+        const { trainNumber } = req.params;
+        const { date, source, destination } = req.query;
 
-    const availabilityMap = {};
-    layout.coaches
-        .filter(coach => !NON_BOOKABLE.has(coach.classCode))
-        .forEach(coach => {
-            const cls = coach.classCode;
-            if (!cls) return;
-
-            if (!availabilityMap[cls]) {
-                availabilityMap[cls] = { total: 0, booked: 0, available: 0 };
-            }
-
-            const seats = (coach.seats && coach.seats.length > 0)
-                ? coach.seats
-                : generateSeats(coach);
-
-            if (seats && seats.length > 0) {
-                const total = seats.length;
-                const booked = seats.filter(s => s.isBooked).length;
-                availabilityMap[cls].total += total;
-                availabilityMap[cls].booked += booked;
-                availabilityMap[cls].available += (total - booked);
-            }
-        });
-
-    const availability = {};
-    for (const [cls, stats] of Object.entries(availabilityMap)) {
-        if (stats.available > 0) {
-            availability[cls] = { status: "AVAILABLE", count: stats.available };
-        } else {
-            availability[cls] = { status: "WAITING LIST", count: Math.abs(stats.available) + 1 };
+        // Base layout determines total seats per class
+        const layout = dataStore.seatLayouts.find(t => t.trainNumber === trainNumber);
+        if (!layout) {
+            return res.json({ trainNumber, availability: {} });
         }
-    }
 
-    res.json({
-        trainNumber: req.params.trainNumber,
-        availability: availability
-    });
+        // We need the train schedule to find indices
+        const train = dataStore.trains.find(t => t.trainNumber === trainNumber);
+        let fromIndex = -1, toIndex = 999;
+        if (train && train.schedule && source && destination) {
+            fromIndex = train.schedule.findIndex(s => s.stationCode.toLowerCase() === source.toLowerCase());
+            toIndex = train.schedule.findIndex(s => s.stationCode.toLowerCase() === destination.toLowerCase());
+        }
+
+        const availabilityMap = {};
+        // Calculate raw seat count
+        layout.coaches
+            .filter(coach => !NON_BOOKABLE.has(coach.classCode))
+            .forEach(coach => {
+                const cls = coach.classCode;
+                if (!cls) return;
+
+                if (!availabilityMap[cls]) availabilityMap[cls] = { total: 0 };
+
+                const seats = (coach.seats && coach.seats.length > 0) ? coach.seats : generateSeats(coach);
+                if (seats && seats.length > 0) {
+                    availabilityMap[cls].total += seats.length;
+                }
+            });
+
+        // 1. Fetch Existing Bookings from Supabase if we have specific date parameters
+        const counts = {}; // { SL: { cnf: 0, rac: 0, wl: 0 }, 3A: ... }
+        Object.keys(availabilityMap).forEach(cls => counts[cls] = { cnf: 0, rac: 0, wl: 0 });
+
+        if (date && fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex) {
+            const { data: existingBookings, error } = await supabase
+                .from('pnr_bookings')
+                .select(`
+                    id, fromIndex, toIndex, classCode,
+                    passengers ( status )
+                `)
+                .eq('trainNumber', trainNumber)
+                .eq('journeyDate', date);
+
+            if (!error && existingBookings) {
+                existingBookings.forEach(booking => {
+                    // Check overlap geometry
+                    if (booking.fromIndex < toIndex && booking.toIndex > fromIndex) {
+                        const cls = booking.classCode;
+                        if (counts[cls]) {
+                            booking.passengers.forEach(p => {
+                                if (p.status === 'CNF') counts[cls].cnf++;
+                                if (p.status === 'RAC') counts[cls].rac++;
+                                if (p.status === 'WL') counts[cls].wl++;
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        // Finalize availability response
+        const availability = {};
+        for (const [cls, stats] of Object.entries(availabilityMap)) {
+            const TOTAL_SEATS = stats.total;
+            const cnfCount = counts[cls]?.cnf || 0;
+            const racCount = counts[cls]?.rac || 0;
+            const wlCount = counts[cls]?.wl || 0;
+
+            // Unreserved Classes: Infinite availability, no RAC/WL
+            if (['GS', 'UR', '2S'].includes(cls)) {
+                availability[cls] = { status: "AVAILABLE", count: "Unlimited", total: "Unlimited" };
+                continue;
+            }
+
+            const remainingCNF = TOTAL_SEATS - cnfCount;
+
+            if (remainingCNF > 0) {
+                availability[cls] = { status: "AVAILABLE", count: remainingCNF, total: TOTAL_SEATS };
+            } else {
+                // Chair Cars typically do not have RAC in Indian Railways, they go straight to WL
+                const hasRAC = !['CC', 'CE', 'EV', 'EC'].includes(cls);
+                const RAC_LIMIT = hasRAC ? 10 : 0;
+
+                if (hasRAC && racCount < RAC_LIMIT) {
+                    availability[cls] = { status: "RAC", count: racCount + 1, total: TOTAL_SEATS };
+                } else {
+                    // For Chair Cars, if WL exceeds a certain amount, it's just WL+1
+                    availability[cls] = { status: "WAITING LIST", count: wlCount + 1, total: TOTAL_SEATS };
+                }
+            }
+        }
+
+        res.json({
+            trainNumber,
+            availability
+        });
+    } catch (err) {
+        console.error("Availability error:", err);
+        res.status(500).json({ error: "Failed to compute true availability" });
+    }
 }
 
 export async function getFare(req, res) {

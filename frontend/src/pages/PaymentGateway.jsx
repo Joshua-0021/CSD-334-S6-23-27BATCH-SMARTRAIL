@@ -74,7 +74,28 @@ export default function PaymentGateway() {
         );
     }
 
-    const { payload, totalAmount, trainName, trainNumber, classType, journeyDate, passengerCount } = state;
+    const isUnreserved = state.isUnreserved || false;
+    const trainName = isUnreserved ? state.train.trainName : state.trainName;
+    const trainNumber = isUnreserved ? state.train.trainNumber : state.trainNumber;
+    const classType = state.classType;
+    const journeyDate = state.journeyDate;
+    const passengerCount = state.passengerCount;
+
+    // Calculate unreserved fares dynamically, or just grab the payload params
+    const baseFare = isUnreserved ? state.farePerPassenger : 500;
+    const ticketFareTotal = passengerCount * baseFare;
+    const serviceCharge = 20;
+    const gstTotal = Math.round(ticketFareTotal * 0.05);
+    const totalAmount = isUnreserved ? (ticketFareTotal + serviceCharge + gstTotal) : state.totalAmount;
+
+    const payload = isUnreserved ? {
+        trainNumber,
+        journeyDate,
+        source: state.source,
+        destination: state.destination,
+        passengerCount,
+        totalFare: totalAmount
+    } : state.payload;
 
     const handleCardChange = (field, value) => {
         if (field === "number") {
@@ -105,7 +126,14 @@ export default function PaymentGateway() {
         }
 
         try {
-            const result = await api.createBooking(payload);
+            let result;
+            if (isUnreserved) {
+                const unreservedRes = await api.bookUnreserved(payload);
+                // Create a fallback PNR ID for the UI using the database UUID
+                result = { pnr: 'UR-' + unreservedRes.ticket.id.split('-')[0].toUpperCase(), ...unreservedRes.ticket };
+            } else {
+                result = await api.createBooking(payload);
+            }
             setBookingResult(result);
             setProcessing(false);
             setSuccess(true);
@@ -522,15 +550,15 @@ export default function PaymentGateway() {
 
                                 <div className="flex justify-between text-sm text-gray-400">
                                     <span>Ticket Fare (x{passengerCount})</span>
-                                    <span>₹{passengerCount * 500}</span>
+                                    <span>₹{ticketFareTotal}</span>
                                 </div>
                                 <div className="flex justify-between text-sm text-gray-400">
                                     <span>Service Charge</span>
-                                    <span>₹20</span>
+                                    <span>₹{serviceCharge}</span>
                                 </div>
                                 <div className="flex justify-between text-sm text-gray-400">
                                     <span>GST (5%)</span>
-                                    <span>₹{Math.round(passengerCount * 500 * 0.05)}</span>
+                                    <span>₹{gstTotal}</span>
                                 </div>
 
                                 <div className="h-px bg-gray-700"></div>

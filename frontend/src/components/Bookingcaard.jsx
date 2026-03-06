@@ -28,8 +28,6 @@ export default function BookingCard() {
 
   const [filters, setFilters] = useState({
     acOnly: false,
-    confirmed: false,
-    tatkal: false,
   });
 
   const [error, setError] = useState("");
@@ -356,23 +354,45 @@ export default function BookingCard() {
             <div className="text-xs md:text-sm font-medium text-[#6B6B6B] mb-3">Quick Filters</div>
 
             <div className="flex flex-wrap items-center gap-2 md:gap-3">
-              {[
-                ["AC Only", "acOnly"],
-                ["Confirmed Seats", "confirmed"],
-                ["Tatkal", "tatkal"],
-              ].map(([label, key]) => (
-                <button
-                  key={key}
-                  onClick={() => setFilters({ ...filters, [key]: !filters[key] })}
-                  className={`flex-1 md:flex-none px-2 md:px-4 py-2.5 rounded-full border text-xs md:text-sm text-center transition whitespace-nowrap
-                    ${filters[key]
-                      ? "bg-[#242424] text-white border-[#242424]"
-                      : "bg-white text-[#242424] border-[#B3B3B3]"
-                    }`}
-                >
-                  {label}
-                </button>
-              ))}
+              <button
+                onClick={() => setFilters({ ...filters, acOnly: !filters.acOnly })}
+                className={`flex-1 md:flex-none px-2 md:px-4 py-2.5 rounded-full border text-xs md:text-sm text-center transition whitespace-nowrap
+                  ${filters.acOnly
+                    ? "bg-[#242424] text-white border-[#242424]"
+                    : "bg-white text-[#242424] border-[#B3B3B3]"
+                  }`}
+              >
+                AC Only
+              </button>
+
+              <button
+                onClick={() => {
+                  const today = new Date();
+                  setSelectedDate(today);
+                }}
+                className={`flex-1 md:flex-none px-2 md:px-4 py-2.5 rounded-full border text-xs md:text-sm text-center transition whitespace-nowrap
+                  ${selectedDate.toDateString() === new Date().toDateString()
+                    ? "bg-[#242424] text-white border-[#242424]"
+                    : "bg-white text-[#242424] border-[#B3B3B3]"
+                  }`}
+              >
+                Today
+              </button>
+
+              <button
+                onClick={() => {
+                  const tomorrow = new Date();
+                  tomorrow.setDate(tomorrow.getDate() + 1);
+                  setSelectedDate(tomorrow);
+                }}
+                className={`flex-1 md:flex-none px-2 md:px-4 py-2.5 rounded-full border text-xs md:text-sm text-center transition whitespace-nowrap
+                  ${selectedDate.toDateString() === new Date(new Date().getTime() + 86400000).toDateString()
+                    ? "bg-[#242424] text-white border-[#242424]"
+                    : "bg-white text-[#242424] border-[#B3B3B3]"
+                  }`}
+              >
+                Tomorrow
+              </button>
 
               {/* SPACER FOR DESKTOP */}
               <div className="hidden lg:block flex-1"></div>

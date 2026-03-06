@@ -55,9 +55,19 @@ const api = {
 
     // --- Bookings ---
 
-    // availability (Mock)
-    checkAvailability: async (trainNumber) => {
-        const res = await fetch(`${API_BASE_URL}/trains/${trainNumber}/availability`);
+    // Get true availability
+    checkAvailability: async (trainNumber, date, source, destination) => {
+        let url = `${API_BASE_URL}/trains/${trainNumber}/availability`;
+        const params = new URLSearchParams();
+        if (date) params.append('date', date);
+        if (source) params.append('source', source);
+        if (destination) params.append('destination', destination);
+
+        if (params.toString()) {
+            url += `?${params.toString()}`;
+        }
+
+        const res = await fetch(url);
         if (!res.ok) throw new Error('Failed to fetch availability');
         return await res.json();
     },
@@ -89,7 +99,43 @@ const api = {
         return await res.json();
     },
 
-    // Get Booking Status
+    // Create Unreserved Booking
+    bookUnreserved: async (bookingPayload) => {
+        const res = await fetch(`${API_BASE_URL}/unreserved/book`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingPayload)
+        });
+
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || 'Unreserved booking failed');
+        }
+        return await res.json();
+    },
+
+    // --- Reviews ---
+
+    getReviews: async (trainNumber) => {
+        const res = await fetch(`${API_BASE_URL}/reviews/${trainNumber}`);
+        if (!res.ok) throw new Error('Failed to fetch reviews');
+        return await res.json();
+    },
+
+    submitReview: async (trainNumber, rating, comment, userId) => {
+        const res = await fetch(`${API_BASE_URL}/reviews/${trainNumber}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ rating, comment, userId })
+        });
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || 'Failed to submit review');
+        }
+        return await res.json();
+    },
+
+    // --- Legacy Bookings / PNR ---
     getBookingStatus: async (pnr) => {
         const res = await fetch(`${API_BASE_URL}/bookings/${pnr}`);
         if (!res.ok) throw new Error('PNR not found or server error');

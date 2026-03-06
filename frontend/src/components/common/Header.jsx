@@ -95,8 +95,8 @@ function Header({ onLoginClick }) {
             }}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <img src="/trainnew.png" alt="Logo" className="h-[50px] hidden sm:block" />
-            <span className="text-[24px] font-bold text-[#2B2B2B] dark:text-white">
+            <img src="/trainnew.png" alt="Logo" className="h-[54px] hidden sm:block" />
+            <span className="text-[28px] font-bold text-[#2B2B2B] dark:text-white">
               SmartRail
             </span>
           </div>

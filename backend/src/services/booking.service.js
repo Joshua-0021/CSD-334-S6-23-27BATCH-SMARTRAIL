@@ -152,7 +152,7 @@ const createBooking = async ({ trainNumber, journeyDate, classCode, source, dest
         else {
             // Try to find a CNF seat
             for (let s = 1; s <= TOTAL_SEATS; s++) {
-                const seatId = `${classCode}-${s}`; // distinct ID e.g., SL-1 (Legacy/Simple Mode)
+                const seatId = `${classCode}-${s}`;
                 if (!occupiedSeats.has(seatId)) {
                     status = 'CNF';
                     seatNumber = seatId;
@@ -167,11 +167,16 @@ const createBooking = async ({ trainNumber, journeyDate, classCode, source, dest
                     status = 'RAC';
                     currentRACCount++;
                     racNumber = currentRACCount;
+                    // Two passengers share one RAC seat. 
+                    // e.g. RAC 1 and 2 share RAC-Seat-1. RAC 3 and 4 share RAC-Seat-2
+                    const sharedSeatIndex = Math.ceil(currentRACCount / 2);
+                    seatNumber = `${classCode}-RAC-${sharedSeatIndex}`;
                 } else if (currentWLCount < WL_LIMIT) {
                     // Try WL
                     status = 'WL';
                     currentWLCount++;
                     wlNumber = currentWLCount;
+                    seatNumber = null;
                 } else {
                     throw new Error('Booking Failed: Regret (No Seats Available)');
                 }
@@ -247,19 +252,20 @@ const cancelBooking = async (pnr, passengerId = null) => {
         passengersToCancel = booking.passengers; // Cancel all
     }
 
-    // 2. Cancellation Logic (Simplified)
-    // Just delete the rows for now. 
-    // Waitlist promotion logic is complex to implement robustly without stored procedures 
-    // because of concurrency race conditions. 
-    // We will initiate a basic promotion heuristic here.
+    const { trainNumber, journeyDate, classCode, fromIndex, toIndex } = booking;
+    const canceledCnfSeats = [];
 
+    // Delete the passengers
     for (const p of passengersToCancel) {
         await supabase.from('passengers').delete().eq('id', p.id);
-
-        // If passenger was CNF, find oldest RAC and promote
         if (p.status === 'CNF') {
-            await promoteOldestRAC(booking.trainNumber, booking.journeyDate, booking.classCode, p.seatNumber, booking.fromIndex, booking.toIndex);
+            canceledCnfSeats.push(p.seatNumber);
         }
+    }
+
+    // Process Promotions if any CNF seats freed
+    if (canceledCnfSeats.length > 0) {
+        await processPromotions(trainNumber, journeyDate, classCode, canceledCnfSeats, fromIndex, toIndex);
     }
 
     // Check if any passengers left
@@ -277,13 +283,91 @@ const cancelBooking = async (pnr, passengerId = null) => {
 };
 
 // Start Promotion Chain
-const promoteOldestRAC = async (trainNumber, journeyDate, classCode, freedSeat, freedFrom, freedTo) => {
-    // Find oldest RAC booking that OVERLAPS with freed segment
-    // This is tricky in simple query.
-    // fetch all RAC passengers for this train/date/class order by createdAt
+const processPromotions = async (trainNumber, journeyDate, classCode, freedSeats, freedFrom, freedTo) => {
+    // 1. Fetch current waiting list for this train/date/class
+    const { data: waitlistPassengers, error } = await supabase
+        .from('pnr_bookings')
+        .select(`
+            id, fromIndex, toIndex, 
+            passengers ( id, status, wlNumber )
+        `)
+        .eq('trainNumber', trainNumber)
+        .eq('journeyDate', journeyDate)
+        .eq('classCode', classCode);
 
-    // ... (Complex logic omitted for brevity in first pass, can be expanded)
-    console.log(`Open seat ${freedSeat} available for promotion logic.`);
+    if (error) {
+        console.error("Error fetching waitlist for promotion", error);
+        return;
+    }
+
+    // Extract all WL passengers and sort by WL number
+    let wlQueue = [];
+    waitlistPassengers.forEach(booking => {
+        // Skip bookings that don't overlap with the freed seat's route
+        if (!(booking.fromIndex < freedTo && booking.toIndex > freedFrom)) return;
+
+        booking.passengers.forEach(p => {
+            if (p.status === 'WL' && p.wlNumber > 0) {
+                wlQueue.push({ ...p, bookingFrom: booking.fromIndex, bookingTo: booking.toIndex });
+            }
+        });
+    });
+
+    wlQueue.sort((a, b) => a.wlNumber - b.wlNumber);
+
+    if (wlQueue.length === 0) return; // No one to promote
+
+    const updates = [];
+
+    // SINGLE SEAT CANCELLATION LOGIC
+    if (freedSeats.length === 1) {
+        const freedSeat = freedSeats[0];
+        // Promote top 2 WL to RAC sharing this seat
+        const p1 = wlQueue.shift();
+        if (p1) updates.push({ id: p1.id, status: 'RAC', seatNumber: `${freedSeat}-RAC-Share`, wlNumber: null, racNumber: 0 }); // racNumber 0 as it's a dynamic promotion
+
+        const p2 = wlQueue.shift();
+        if (p2) updates.push({ id: p2.id, status: 'RAC', seatNumber: `${freedSeat}-RAC-Share`, wlNumber: null, racNumber: 0 });
+    }
+    // BULK CANCELLATION LOGIC (e.g., > 1 seat freed)
+    else {
+        // As per requirements: Top 50% get full confirmed tickets, rest get RAC (2 per seat)
+        const numberOfSeatsFreed = freedSeats.length;
+        const totalWlToAccommodate = Math.min(wlQueue.length, numberOfSeatsFreed * 2);
+
+        const halfCount = Math.ceil(totalWlToAccommodate / 2);
+
+        // Give 50% of people full CNF seats
+        for (let i = 0; i < halfCount; i++) {
+            if (wlQueue.length === 0 || freedSeats.length === 0) break;
+            const p = wlQueue.shift();
+            const seat = freedSeats.shift(); // Take 1 full seat
+            updates.push({ id: p.id, status: 'CNF', seatNumber: seat, wlNumber: null, racNumber: null });
+        }
+
+        // Give remaining people RAC seats (2 per remaining freed seat)
+        while (wlQueue.length > 0 && freedSeats.length > 0) {
+            const seat = freedSeats.shift();
+
+            const p1 = wlQueue.shift();
+            if (p1) updates.push({ id: p1.id, status: 'RAC', seatNumber: `${seat}-RAC-Share`, wlNumber: null, racNumber: 0 });
+
+            const p2 = wlQueue.shift();
+            if (p2) updates.push({ id: p2.id, status: 'RAC', seatNumber: `${seat}-RAC-Share`, wlNumber: null, racNumber: 0 });
+        }
+    }
+
+    // Apply DB Updates
+    for (const update of updates) {
+        await supabase.from('passengers').update({
+            status: update.status,
+            seatNumber: update.seatNumber,
+            wlNumber: update.wlNumber,
+            racNumber: update.racNumber
+        }).eq('id', update.id);
+    }
+
+    console.log(`Promoted ${updates.length} passengers from Waitlist due to cancellation.`);
 };
 
 // ---------------------------------------------

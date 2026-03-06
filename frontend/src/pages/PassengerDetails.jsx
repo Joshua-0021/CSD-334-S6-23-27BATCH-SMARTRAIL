@@ -157,11 +157,11 @@ export default function PassengerDetails() {
   }
 
   const actualTrain = train?.data || train;
-  const isFormValid = passengers.length > 0 && passengers.every(p => p.name && p.name.trim() !== "" && p.age && p.gender !== "Gender");
+  const isFormValid = isUnreserved ? true : (passengers.length > 0 && passengers.every(p => p.name && p.name.trim() !== "" && p.age && p.gender !== "Gender"));
 
   return (
-    <div className="min-h-screen pt-20 bg-[#0f172a] pb-20 px-4 text-gray-100 font-sans relative">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen pt-24 md:pt-32 bg-[#0f172a] pb-20 px-4 text-gray-100 font-sans relative">
+      <div className="max-w-4xl mx-auto space-y-8">
 
         {/* Ticket Header Summary */}
         <div style={{ backgroundColor: '#2B2B2B' }} className="rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden">
@@ -176,9 +176,8 @@ export default function PassengerDetails() {
                 <span className="text-orange-500">#{actualTrain?.trainNumber || train?.trainNumber}</span>
               </h1>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400 font-mono">
-                <span className="bg-[#1D2332] text-gray-200 px-2 sm:px-3 py-1 rounded-full border border-gray-700">{classType} Class</span>
-                {isUnreserved && (
-                  <span className="bg-yellow-900/40 text-yellow-400 px-2 sm:px-3 py-1 rounded-full border border-yellow-700">Unreserved</span>
+                {!isUnreserved && (
+                  <span className="bg-[#1D2332] text-gray-200 px-2 sm:px-3 py-1 rounded-full border border-gray-700">{classType} Class</span>
                 )}
                 <span>•</span>
                 <span>{new Date(journeyDate).toDateString()}</span>
@@ -213,151 +212,231 @@ export default function PassengerDetails() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Passenger Forms */}
-          <div className="md:col-span-2 space-y-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <span>Passenger Details</span>
-              <div className="h-px flex-1 bg-gray-700"></div>
-            </h2>
+        {isUnreserved ? (
+          <div className="bg-gray-800 rounded-2xl border border-gray-700 shadow-lg mt-3 overflow-hidden">
 
-            {passengers.map((p, idx) => (
-              <div key={p.id} className="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-md">
-                <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-700">
-                  <span className="font-semibold text-orange-400">Passenger {idx + 1}</span>
-                  {/* Only show seat chip for reserved classes */}
-                  {!isUnreserved && p.seatNumber && (
-                    <span className="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300">
-                      Seat {p.seatNumber} ({p.coachId})
-                    </span>
+            {/* Two-column layout */}
+            <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-700/60">
+
+              {/* Left: Ticket class info */}
+              <div className="flex flex-col items-center justify-center px-8 py-24 gap-1 md:min-w-[200px] bg-gray-900/30">
+                <span className="text-[10px] text-orange-400 uppercase tracking-widest font-bold mb-1">Class</span>
+                <span className="text-white font-bold text-xl">
+                  {classType === 'GS' ? 'General Sitting' : classType === 'UR' ? 'Unreserved' : classType === '2S' ? 'Second Sitting' : classType || 'General Sitting'}
+                </span>
+                <span className="text-xs text-gray-500 font-mono mt-0.5">{classType}</span>
+                <span className="text-gray-400 text-sm mt-3">
+                  {unreservedCount} passenger{unreservedCount > 1 ? 's' : ''}
+                </span>
+              </div>
+
+              {/* Right: Fare rows */}
+              <div className="flex-1 p-10">
+                <div className="space-y-2 text-[15px]">
+                  {fareBreakdown ? (
+                    <>
+                      <div className="flex justify-between text-gray-400">
+                        <span>Base Fare ({fareBreakdown.distanceKm} km × ₹{fareBreakdown.ratePerKm})</span>
+                        <span>₹{fareBreakdown.baseFare}</span>
+                      </div>
+                      {fareBreakdown.fuelAdjustment > 0 && (
+                        <div className="flex justify-between text-gray-400">
+                          <span>Fuel Adjustment (5%)</span>
+                          <span>₹{fareBreakdown.fuelAdjustment}</span>
+                        </div>
+                      )}
+                      {fareBreakdown.gst > 0 && (
+                        <div className="flex justify-between text-gray-400">
+                          <span>GST</span>
+                          <span>₹{fareBreakdown.gst}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between text-gray-300 border-t border-gray-700/50 pt-1 mt-1">
+                        <span>Fare / Passenger</span>
+                        <span className="font-semibold text-white">₹{fareBreakdown.totalFare}</span>
+                      </div>
+                      {unreservedCount > 1 && (
+                        <div className="flex justify-between text-orange-400/80">
+                          <span>× {unreservedCount} passengers</span>
+                          <span>₹{fareBreakdown.totalFare * unreservedCount}</span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex justify-between text-gray-400">
+                      <span>Ticket Fare (×{unreservedCount})</span>
+                      <span>₹{unreservedCount * (farePerPerson || 0)}</span>
+                    </div>
                   )}
-                  {isUnreserved && (
-                    <span className="text-xs bg-yellow-900/40 border border-yellow-700/50 px-2 py-1 rounded text-yellow-400">
-                      Unreserved — no seat
-                    </span>
-                  )}
+                  <div className="flex justify-between text-gray-400">
+                    <span>Convenience Fee</span>
+                    <span>₹20</span>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-xs text-gray-400 ml-1">Full Name</label>
-                    <input
-                      type="text"
-                      placeholder="Enter Full Name"
-                      value={p.name}
-                      onChange={(e) => handleChange(p.id, "name", e.target.value)}
-                      className="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-orange-500 text-white placeholder-gray-600"
-                    />
+                {/* Total + Button row */}
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-700/50">
+                  <div>
+                    <p className="text-xs text-gray-500 mb-0.5">Total Payable</p>
+                    <p className="text-xl font-bold text-orange-500">
+                      ₹{(fareBreakdown ? fareBreakdown.totalFare * unreservedCount : unreservedCount * (farePerPerson || 0)) + 20}
+                    </p>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <button
+                    onClick={handleSubmit}
+                    disabled={loading}
+                    className={`px-6 py-2 rounded-lg font-semibold text-sm transition duration-200
+                      ${loading ? "bg-gray-600 text-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-500 text-white"}`}
+                  >
+                    {loading ? "Processing..." : "Proceed to Pay"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Passenger Forms */}
+            <div className="md:col-span-2 space-y-6">
+              <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span>Passenger Details</span>
+                <div className="h-px flex-1 bg-gray-700"></div>
+              </h2>
+
+              {!isUnreserved && passengers.map((p, idx) => (
+                <div key={p.id} className="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-md">
+                  <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-700">
+                    <span className="font-semibold text-orange-400">Passenger {idx + 1}</span>
+                    {p.seatNumber && (
+                      <span className="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300">
+                        Seat {p.seatNumber} ({p.coachId})
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <label className="text-xs text-gray-400 ml-1">Age</label>
+                      <label className="text-xs text-gray-400 ml-1">Full Name</label>
                       <input
-                        type="number"
-                        placeholder="Age"
-                        value={p.age}
-                        onChange={(e) => handleChange(p.id, "age", e.target.value)}
+                        type="text"
+                        placeholder="Enter Full Name"
+                        value={p.name}
+                        onChange={(e) => handleChange(p.id, "name", e.target.value)}
                         className="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-orange-500 text-white placeholder-gray-600"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label className="text-xs text-gray-400 ml-1">Gender</label>
-                      <select
-                        value={p.gender}
-                        onChange={(e) => handleChange(p.id, "gender", e.target.value)}
-                        className="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-orange-500 text-white"
-                      >
-                        <option value="Gender" disabled>Select</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <label className="text-xs text-gray-400 ml-1">Age</label>
+                        <input
+                          type="number"
+                          placeholder="Age"
+                          value={p.age}
+                          onChange={(e) => handleChange(p.id, "age", e.target.value)}
+                          className="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-orange-500 text-white placeholder-gray-600"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs text-gray-400 ml-1">Gender</label>
+                        <select
+                          value={p.gender}
+                          onChange={(e) => handleChange(p.id, "gender", e.target.value)}
+                          className="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-orange-500 text-white"
+                        >
+                          <option value="Gender" disabled>Select</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
 
-          {/* Fare Summary Side Panel */}
-          <div className="md:col-span-1">
-            <div className="hidden md:block h-[44px]"></div>
-            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 sticky top-24">
-              <h3 className="text-lg font-semibold mb-1 text-white">Fare Breakdown</h3>
-              {fareBreakdown && (
-                <p className="text-[10px] text-gray-500 mb-4">
-                  {fareBreakdown.distanceKm} km · ₹{fareBreakdown.ratePerKm}/km · {fareBreakdown.label}
-                </p>
-              )}
+              {/* Unreserved block removed from here since it now has its own master layout */}
+            </div>
 
-              <div className="space-y-2 mb-4 text-sm">
-                {fareBreakdown ? (
-                  <>
-                    <div className="flex justify-between text-gray-400">
-                      <span>Base Fare ({fareBreakdown.distanceKm} km × ₹{fareBreakdown.ratePerKm})</span>
-                      <span>₹{fareBreakdown.baseFare}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-400">
-                      <span>Fuel Adjustment (5%)</span>
-                      <span>₹{fareBreakdown.fuelAdjustment}</span>
-                    </div>
-                    {fareBreakdown.reservationCharge > 0 && (
-                      <div className="flex justify-between text-gray-400">
-                        <span>Reservation Charge</span>
-                        <span>₹{fareBreakdown.reservationCharge}</span>
-                      </div>
-                    )}
-                    {fareBreakdown.superfastCharge > 0 && (
-                      <div className="flex justify-between text-gray-400">
-                        <span>Superfast Charge</span>
-                        <span>₹{fareBreakdown.superfastCharge}</span>
-                      </div>
-                    )}
-                    {fareBreakdown.gst > 0 && (
-                      <div className="flex justify-between text-gray-400">
-                        <span>GST (5% on AC)</span>
-                        <span>₹{fareBreakdown.gst}</span>
-                      </div>
-                    )}
-                    <div className="flex justify-between text-gray-300 border-t border-gray-700 pt-2">
-                      <span>Fare / Passenger</span>
-                      <span className="font-semibold">₹{fareBreakdown.totalFare}</span>
-                    </div>
-                    {passengers.length > 1 && (
-                      <div className="flex justify-between text-gray-400">
-                        <span>× {passengers.length} passengers</span>
-                        <span>₹{fareBreakdown.totalFare * passengers.length}</span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="flex justify-between text-gray-400">
-                    <span>Ticket Fare (×{passengers.length})</span>
-                    <span>₹{passengers.length * (farePerPerson || 0)}</span>
-                  </div>
+            {/* Fare Summary Side Panel */}
+            <div className="md:col-span-1">
+              <div className="hidden md:block h-[44px]"></div>
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 sticky top-24">
+                <h3 className="text-lg font-semibold mb-1 text-white">Fare Breakdown</h3>
+                {fareBreakdown && (
+                  <p className="text-[10px] text-gray-500 mb-4">
+                    {fareBreakdown.distanceKm} km · ₹{fareBreakdown.ratePerKm}/km · {fareBreakdown.label}
+                  </p>
                 )}
-                <div className="flex justify-between text-gray-400">
-                  <span>Convenience Fee</span>
-                  <span>₹20</span>
-                </div>
-                <div className="h-px bg-gray-700 my-2"></div>
-                <div className="flex justify-between font-bold text-white text-lg">
-                  <span>Total</span>
-                  <span>₹{(fareBreakdown ? fareBreakdown.totalFare * passengers.length : passengers.length * (farePerPerson || 0)) + 20}</span>
-                </div>
-              </div>
 
-              <button
-                onClick={handleSubmit}
-                disabled={loading || !isFormValid}
-                className={`w-full font-bold py-3 rounded-lg shadow-lg transition duration-300 flex justify-center items-center gap-2 ${loading || !isFormValid ? "bg-gray-600 text-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-700 text-white hover:shadow-orange-500/20"}`}
-              >
-                {loading ? "Processing..." : "Proceed to Pay"}
-              </button>
-              <p className="text-xs text-center text-gray-500 mt-4">Safe &amp; Secure Payment</p>
+                <div className="space-y-2 mb-4 text-sm">
+                  {fareBreakdown ? (
+                    <>
+                      <div className="flex justify-between text-gray-400">
+                        <span>Base Fare ({fareBreakdown.distanceKm} km × ₹{fareBreakdown.ratePerKm})</span>
+                        <span>₹{fareBreakdown.baseFare}</span>
+                      </div>
+                      <div className="flex justify-between text-gray-400">
+                        <span>Fuel Adjustment (5%)</span>
+                        <span>₹{fareBreakdown.fuelAdjustment}</span>
+                      </div>
+                      {fareBreakdown.reservationCharge > 0 && (
+                        <div className="flex justify-between text-gray-400">
+                          <span>Reservation Charge</span>
+                          <span>₹{fareBreakdown.reservationCharge}</span>
+                        </div>
+                      )}
+                      {fareBreakdown.superfastCharge > 0 && (
+                        <div className="flex justify-between text-gray-400">
+                          <span>Superfast Charge</span>
+                          <span>₹{fareBreakdown.superfastCharge}</span>
+                        </div>
+                      )}
+                      {fareBreakdown.gst > 0 && (
+                        <div className="flex justify-between text-gray-400">
+                          <span>GST (5% on AC)</span>
+                          <span>₹{fareBreakdown.gst}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between text-gray-300 border-t border-gray-700 pt-2">
+                        <span>Fare / Passenger</span>
+                        <span className="font-semibold">₹{fareBreakdown.totalFare}</span>
+                      </div>
+                      {passengers.length > 1 && (
+                        <div className="flex justify-between text-gray-400">
+                          <span>× {passengers.length} passengers</span>
+                          <span>₹{fareBreakdown.totalFare * passengers.length}</span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex justify-between text-gray-400">
+                      <span>Ticket Fare (×{passengers.length})</span>
+                      <span>₹{passengers.length * (farePerPerson || 0)}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between text-gray-400">
+                    <span>Convenience Fee</span>
+                    <span>₹20</span>
+                  </div>
+                  <div className="h-px bg-gray-700 my-2"></div>
+                  <div className="flex justify-between font-bold text-white text-lg">
+                    <span>Total</span>
+                    <span>₹{(fareBreakdown ? fareBreakdown.totalFare * passengers.length : passengers.length * (farePerPerson || 0)) + 20}</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading || !isFormValid}
+                  className={`w-full font-bold py-3 rounded-lg shadow-lg transition duration-300 flex justify-center items-center gap-2 ${loading || !isFormValid ? "bg-gray-600 text-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-700 text-white hover:shadow-orange-500/20"}`}
+                >
+                  {loading ? "Processing..." : "Proceed to Pay"}
+                </button>
+                <p className="text-xs text-center text-gray-500 mt-4">Safe &amp; Secure Payment</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
