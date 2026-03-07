@@ -72,6 +72,13 @@ const api = {
         return await res.json();
     },
 
+    // Get Booked Seats List for a specific train and date
+    getBookedSeats: async (trainNumber, date) => {
+        const res = await fetch(`${API_BASE_URL}/bookings/booked-seats?trainNumber=${trainNumber}&date=${date}`);
+        if (!res.ok) throw new Error('Failed to fetch booked seats');
+        return await res.json();
+    },
+
     // Get fare for a train (optionally between specific stations)
     getFare: async (trainNumber, source, destination) => {
         let url = `${API_BASE_URL}/trains/${trainNumber}/fare`;

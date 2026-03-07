@@ -343,8 +343,8 @@ export default function Support({ autoScroll = true }) {
     <div id="support-section" className="relative w-full max-w-6xl mx-auto mt-16 px-4 pb-20 text-white animate-in fade-in duration-700 scroll-mt-[120px]">
       <div className="mb-10 border-b border-[#B3B3B3]/20 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-0">
         <div>
-          <h2 className="text-4xl font-black uppercase tracking-tighter text-[#FFFFFF]">Support</h2>
-          <p className="text-[#D4D4D4] text-[10px] font-bold uppercase tracking-[0.3em] mt-1 opacity-60">
+          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-[#FFFFFF]">Support</h2>
+          <p className="text-[#D4D4D4] opacity-60 text-sm md:text-base font-medium leading-relaxed mt-1">
             File a complaint or report an issue
           </p>
         </div>

@@ -74,8 +74,21 @@ const getBookingStatusHandler = async (req, res) => {
     }
 };
 
+const getBookedSeatsHandler = async (req, res) => {
+    try {
+        const { trainNumber, date } = req.query;
+        if (!trainNumber || !date) return res.status(400).json({ error: "Missing trainNumber or date" });
+
+        const bookedIds = await bookingService.getBookedSeatsList(trainNumber, date);
+        res.status(200).json({ success: true, bookedSeats: bookedIds });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 export default {
     createBookingHandler,
     cancelBookingHandler,
-    getBookingStatusHandler
+    getBookingStatusHandler,
+    getBookedSeatsHandler
 };

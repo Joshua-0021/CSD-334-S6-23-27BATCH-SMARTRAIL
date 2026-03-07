@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import NotificationCenter from "./NotificationCenter";
 
 function LabelNavbar({ hidden, setHidden }) {
   // If parent doesn't provide setHidden, manage local hidden state so
@@ -139,15 +140,7 @@ function LabelNavbar({ hidden, setHidden }) {
         </button>
 
 
-
-
-        <a className={navItem}>
-          Notifications
-          {hasNotification && (
-            <span className="absolute -top-1 -right-2 w-2 h-2 bg-red-500 rounded-full" />
-          )}
-          <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#2B2B2B] transition-all duration-300 group-hover:w-full"></span>
-        </a>
+        <NotificationCenter />
 
 
         <button onClick={(e) => {

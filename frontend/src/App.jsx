@@ -16,6 +16,7 @@ import PassengerDetails from "./pages/PassengerDetails";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import SeatLayout from "./pages/SeatLayout";
 import PaymentGateway from "./pages/PaymentGateway";
+import AllNotifications from "./pages/AllNotifications";
 
 import { supabase } from "./utils/supabaseClient";
 
@@ -167,6 +168,7 @@ export default function App() {
     location.pathname.startsWith('/seat-layout') ||
     location.pathname.startsWith('/payment') ||
     location.pathname.startsWith('/results') ||
+    location.pathname.startsWith('/notifications') ||
     location.pathname.startsWith('/passenger-details');
 
   const swapStations = () => {
@@ -288,6 +290,7 @@ export default function App() {
                 <Pnrstatus />
               </div>
             } />
+            <Route path="/notifications" element={<AllNotifications />} />
             <Route path="/support" element={<Support />} />
           </Routes>
         </main>

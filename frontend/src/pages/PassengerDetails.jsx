@@ -12,7 +12,9 @@ export default function PassengerDetails() {
     setState(location.state);
   }, [location.state]);
 
-  const { train, selectedSeats, classType, journeyDate, source, destination, isUnreserved, passengerCount: initPassengerCount } = state || {};
+  const { train, selectedSeats, classType, journeyDate, source, destination, passengerCount: initPassengerCount } = state || {};
+
+  const isUnreservedClass = classType ? ['GN', 'GS', 'UR', '2S'].includes(classType) || classType.toLowerCase().includes('general') : false;
 
   // Extract station code from "Name (CODE)" format
   const extractCode = (str) => {
@@ -32,7 +34,7 @@ export default function PassengerDetails() {
   useEffect(() => {
     if (!state) return;
 
-    if (isUnreserved) {
+    if (isUnreservedClass) {
       // Initialise stubs based on unreservedCount (no seat assignments)
       const stubs = Array.from({ length: unreservedCount }, (_, i) => ({
         id: i,
@@ -60,11 +62,11 @@ export default function PassengerDetails() {
       }));
       setPassengers(initialPassengers);
     }
-  }, [selectedSeats, navigate, isUnreserved, unreservedCount]);
+  }, [selectedSeats, navigate, isUnreservedClass, unreservedCount]);
 
   // Re-build stubs when unreservedCount changes
   useEffect(() => {
-    if (!isUnreserved) return;
+    if (!isUnreservedClass) return;
     const stubs = Array.from({ length: unreservedCount }, (_, i) => ({
       id: i,
       seatNumber: null,
@@ -76,7 +78,7 @@ export default function PassengerDetails() {
     }));
     setPassengers(stubs);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unreservedCount, isUnreserved]);
+  }, [unreservedCount, isUnreservedClass]);
 
   // Fetch real fare
   useEffect(() => {
@@ -92,8 +94,8 @@ export default function PassengerDetails() {
           setFareBreakdown(data.fareDetails[classType]);
         }
       })
-      .catch(() => setFarePerPerson(isUnreserved ? 50 : 500));
-  }, [train, classType, source, destination, isUnreserved]);
+      .catch(() => setFarePerPerson(isUnreservedClass ? 50 : 500));
+  }, [train, classType, source, destination, isUnreservedClass]);
 
   const handleChange = (id, field, value) => {
     setPassengers(passengers.map(p => p.id === id ? { ...p, [field]: value } : p));
@@ -157,7 +159,7 @@ export default function PassengerDetails() {
   }
 
   const actualTrain = train?.data || train;
-  const isFormValid = isUnreserved ? true : (passengers.length > 0 && passengers.every(p => p.name && p.name.trim() !== "" && p.age && p.gender !== "Gender"));
+  const isFormValid = isUnreservedClass ? true : (passengers.length > 0 && passengers.every(p => p.name && p.name.trim() !== "" && p.age && p.gender !== "Gender"));
 
   return (
     <div className="min-h-screen pt-24 md:pt-32 bg-[#0f172a] pb-20 px-4 text-gray-100 font-sans relative">
@@ -176,7 +178,7 @@ export default function PassengerDetails() {
                 <span className="text-orange-500">#{actualTrain?.trainNumber || train?.trainNumber}</span>
               </h1>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400 font-mono">
-                {!isUnreserved && (
+                {!isUnreservedClass && (
                   <span className="bg-[#1D2332] text-gray-200 px-2 sm:px-3 py-1 rounded-full border border-gray-700">{classType} Class</span>
                 )}
                 <span>•</span>
@@ -191,7 +193,7 @@ export default function PassengerDetails() {
             {/* Passenger count — editable for unreserved, fixed for reserved */}
             <div className="text-center md:text-right border-t border-gray-700/50 md:border-t-0 md:border-l pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
               <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mb-1">Passengers</div>
-              {isUnreserved ? (
+              {isUnreservedClass ? (
                 <div className="flex items-center justify-center md:justify-end gap-2">
                   <button
                     onClick={() => setUnreservedCount(c => Math.max(1, c - 1))}
@@ -212,7 +214,7 @@ export default function PassengerDetails() {
           </div>
         </div>
 
-        {isUnreserved ? (
+        {isUnreservedClass ? (
           <div className="bg-gray-800 rounded-2xl border border-gray-700 shadow-lg mt-3 overflow-hidden">
 
             {/* Two-column layout */}
@@ -303,7 +305,7 @@ export default function PassengerDetails() {
                 <div className="h-px flex-1 bg-gray-700"></div>
               </h2>
 
-              {!isUnreserved && passengers.map((p, idx) => (
+              {!isUnreservedClass && passengers.map((p, idx) => (
                 <div key={p.id} className="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-md">
                   <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-700">
                     <span className="font-semibold text-orange-400">Passenger {idx + 1}</span>

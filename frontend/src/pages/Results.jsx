@@ -76,33 +76,12 @@ export default function Results() {
                     if (fromCode && toCode) {
                         const apiResults = await api.searchTrainsBetween(fromCode, toCode, dateParam);
 
-                        // API returns filtered list already, but we can filter by day if needed
-                        if (dateParam) {
-                            // Ensure date is treated accurately without local timezone shift 
-                            // Using the raw string constructor 'YYYY-MM-DD' behaves differently depending on system.
-                            // Convert to standardized parts
-                            const dateParts = dateParam.split('-');
-                            const year = parseInt(dateParts[0], 10);
-                            const month = parseInt(dateParts[1], 10) - 1; // months are 0-indexed
-                            const day = parseInt(dateParts[2], 10);
-                            const dateObj = new Date(year, month, day);
-
-                            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                            const shortDay = days[dateObj.getDay()];
-
-                            filtered = apiResults.filter(t =>
-                                !t.runningDays || t.runningDays.length === 0 || t.runningDays.includes(shortDay)
-                            );
-                        } else {
-                            filtered = apiResults;
-                        }
-
-                        // Map to view model
-                        filtered = filtered.map(t => ({
+                        // Backend already filters by running day when date is passed
+                        filtered = apiResults.map(t => ({
                             ...t,
                             departureTime: t.fromStation?.departureTime || t.fromStation?.arrivalTime || "06:00",
                             arrivalTime: t.toStation?.arrivalTime || t.toStation?.departureTime || "14:00",
-                            duration: "Calculating..." // Ideally from API
+                            duration: "Calculating..."
                         }));
                     }
                 }
@@ -232,51 +211,49 @@ export default function Results() {
                         </div>
 
                         {searchMode === 'route' && (
-                            <div className="bg-gray-800 rounded-lg px-4 py-2 text-sm border border-gray-700">
-                                <span className="text-gray-400">Class:</span> <span className="font-semibold text-white">{classParam}</span>
+                            <div className="bg-gray-800 rounded-lg px-4 py-2 text-sm border border-gray-700 whitespace-nowrap">
+                                <span className="text-gray-400">Class:</span> <span className="font-semibold text-white">{classFilter !== 'All' ? classFilter : classParam}</span>
                             </div>
                         )}
                     </div>
+
+                    {/* Filter Bar (Moved inside header to fix overlap bug) */}
+                    {!loading && results.length > 0 && (
+                        <div className="mt-8 flex flex-wrap items-center gap-2">
+                            {/* Class chips */}
+                            <div className="flex gap-1.5 flex-wrap">
+                                {CLASS_CHIPS.map(c => (
+                                    <button
+                                        key={c}
+                                        onClick={() => { setClassFilter(c); if (c !== 'All') setAcOnly(false); }}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition duration-150
+                                            ${classFilter === c
+                                                ? 'bg-orange-600 border-orange-500 text-white'
+                                                : 'bg-gray-800 border-gray-700 text-gray-400 hover:text-white hover:border-gray-500'
+                                            }`}
+                                    >
+                                        {c}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="h-4 w-px bg-gray-700 mx-1 hidden sm:block" />
+
+                            {/* AC Only toggle */}
+                            <button
+                                onClick={() => { setAcOnly(v => !v); setClassFilter('All'); }}
+                                className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition duration-150
+                                    ${acOnly
+                                        ? 'bg-blue-600 border-blue-500 text-white'
+                                        : 'bg-gray-800 border-gray-700 text-gray-400 hover:text-white hover:border-gray-500'
+                                    }`}
+                            >
+                                ❄ AC Only
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
-
-            {/* Filter Bar */}
-            {!loading && results.length > 0 && (
-                <div className="sticky top-0 z-20 bg-gray-900/95 backdrop-blur-sm border-b border-white/5 px-4 py-3">
-                    <div className="max-w-6xl mx-auto flex flex-wrap items-center gap-2">
-                        {/* Class chips */}
-                        <div className="flex gap-1.5 flex-wrap">
-                            {CLASS_CHIPS.map(c => (
-                                <button
-                                    key={c}
-                                    onClick={() => { setClassFilter(c); if (c !== 'All') setAcOnly(false); }}
-                                    className={`px-3 py-1 rounded-full text-xs font-semibold border transition duration-150
-                                        ${classFilter === c
-                                            ? 'bg-orange-600 border-orange-500 text-white'
-                                            : 'bg-gray-800 border-gray-700 text-gray-400 hover:text-white hover:border-gray-500'
-                                        }`}
-                                >
-                                    {c}
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className="h-4 w-px bg-gray-700 mx-1 hidden sm:block" />
-
-                        {/* AC Only toggle */}
-                        <button
-                            onClick={() => { setAcOnly(v => !v); setClassFilter('All'); }}
-                            className={`px-3 py-1 rounded-full text-xs font-semibold border transition duration-150
-                                ${acOnly
-                                    ? 'bg-blue-600 border-blue-500 text-white'
-                                    : 'bg-gray-800 border-gray-700 text-gray-400 hover:text-white hover:border-gray-500'
-                                }`}
-                        >
-                            ❄ AC Only
-                        </button>
-                    </div>
-                </div>
-            )}
 
             {/* Results List */}
             <div className="max-w-6xl mx-auto px-4 -mt-24 relative z-10">
@@ -399,7 +376,7 @@ export default function Results() {
                                                                 }
                                                             });
                                                         } else {
-                                                            navigate(`/seat-layout/${train.trainNumber}/${cls}?date=${dateParam}&from=${navFrom}&to=${navTo}&passengers=${searchParams.get('passengers') || 1}`);
+                                                            navigate(`/seat-layout/${train.trainNumber}/${cls}?date=${dateParam}&from=${navFrom}&to=${navTo}&passengers=${searchParams.get('passengers') || 1}&viewOnly=true`);
                                                         }
                                                     };
 

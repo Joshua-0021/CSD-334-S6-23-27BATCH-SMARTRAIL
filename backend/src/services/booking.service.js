@@ -390,4 +390,47 @@ const getBookingStatus = async (pnr) => {
     return data;
 };
 
-export default { createBooking, cancelBooking, getBookingStatus };
+// ---------------------------------------------
+// Get Booked Seats List (for Seat Layout View)
+// ---------------------------------------------
+const getBookedSeatsList = async (trainNumber, journeyDate) => {
+    // 1. Fetch all non-cancelled bookings for this train and date
+    const { data: bookings, error } = await supabase
+        .from('pnr_bookings')
+        .select(`
+            id,
+            passengers (
+                seat_number,
+                status
+            )
+        `)
+        .eq('train_number', String(trainNumber))
+        .eq('journey_date', journeyDate)
+        .neq('status', 'CANCELLED');
+
+    if (error) {
+        console.error("Error fetching bookings for layout:", error);
+        return [];
+    }
+
+    // 2. Extract seat numbers -> 'coachId-seatNumber'
+    const bookedSeatIds = [];
+    bookings.forEach(booking => {
+        if (booking.passengers) {
+            booking.passengers.forEach(p => {
+                if (p.seat_number && p.status === 'CNF') {
+                    bookedSeatIds.push(p.seat_number);
+                }
+            });
+        }
+    });
+
+    return bookedSeatIds;
+};
+
+export default {
+    createBooking,
+    cancelBooking,
+    getBookingStatus,
+    getBookedSeatsList
+};

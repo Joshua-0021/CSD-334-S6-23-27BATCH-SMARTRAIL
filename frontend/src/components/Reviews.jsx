@@ -12,6 +12,7 @@ export default function Reviews() {
     const [startAnimation, setStartAnimation] = useState(false);
     const [user, setUser] = useState(null);
     const [expandedCards, setExpandedCards] = useState({});
+    const [animStep, setAnimStep] = useState(0); // 0=hidden, 1=header in, 2=content in
 
     const toggleCard = (id) => setExpandedCards(prev => ({ ...prev, [id]: !prev[id] }));
 
@@ -52,7 +53,9 @@ export default function Reviews() {
         if (!searchQuery.trim()) return;
         setTrainName(searchQuery);
         setHasSearched(true);
-        setTimeout(() => setStartAnimation(true), 100);
+        setAnimStep(0);
+        setTimeout(() => setAnimStep(1), 60);   // header slides in
+        setTimeout(() => setAnimStep(2), 240);  // content rises up
 
         try {
             const data = await api.getReviews(searchQuery);
@@ -152,17 +155,20 @@ export default function Reviews() {
 
     if (!hasSearched) {
         return (
-            <div className="w-full max-w-4xl mx-auto mt-8 mb-[2px] px-4 py-28 text-center animate-in fade-in duration-700">
-                <div className="bg-[#1D2332] p-10 rounded-3xl relative overflow-hidden group">
-                    <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4 relative z-10">SmartRail Reviews Hub</h2>
-                    <p className="text-slate-400 text-lg mb-8 max-w-xl mx-auto relative z-10">
-                        SmartRail Reviews Hub, search for a train name or number to see reviews, ratings, and traveler photos.
-                    </p>
-                    <div className="relative max-w-lg mx-auto z-10">
+            <div className="relative w-full max-w-6xl mx-auto mt-8 pb-20 px-4 animate-in fade-in duration-700">
+                <div className="mb-8 pl-2">
+                    <div className="mb-6">
+                        <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white drop-shadow-sm mb-2">SmartRail Reviews Hub</h2>
+                        <p className="text-[#D4D4D4] opacity-60 text-sm md:text-base font-medium leading-relaxed max-w-2xl ml-1">
+                            Search for a train name or number to see reviews, ratings, and traveler photos.
+                        </p>
+                    </div>
+                    <div className="h-px bg-white/10 w-full mb-6"></div>
+                    <div className="relative max-w-lg">
                         <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch()} placeholder="Enter train name or number..."
-                            className="w-full pl-6 pr-14 py-4 bg-[#1D2332] border border-white/20 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 transition-all text-lg" />
+                            className="w-full pl-6 pr-14 py-4 bg-[#1D2332] border border-white/20 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 transition-all text-base" />
                         <button onClick={handleSearch} className="absolute right-2 top-2 bottom-2 aspect-square bg-white hover:bg-slate-200 text-black rounded-xl flex items-center justify-center transition-colors">
-                            <Search className="w-6 h-6" />
+                            <Search className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
@@ -170,14 +176,15 @@ export default function Reviews() {
         );
     }
 
-    return (
-        <div className={`relative w-full max-w-6xl mx-auto mt-8 mb-20 px-4 transition-all duration-700 ${startAnimation ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
-            {/* HEADER */}
-            <div className="mb-8 pl-2">
+    return (
+        <div className="relative w-full max-w-6xl mx-auto mt-8 pb-20 px-4">
+
+            {/* HEADER — slides in first */}
+            <div className={`mb-8 pl-2 transition-all duration-500 ease-out ${animStep >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
                 <div className="mb-6">
-                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white drop-shadow-sm mb-2">Trains &amp; Reviews</h2>
-                    <p className="text-slate-400 text-sm md:text-base font-medium leading-relaxed max-w-2xl ml-1">Your journey matters. Share your experience and help shape better travels.</p>
+                    <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white drop-shadow-sm mb-2">Trains &amp; Reviews</h2>
+                    <p className="text-[#D4D4D4] opacity-60 text-sm md:text-base font-medium leading-relaxed max-w-2xl ml-1">Your journey matters. Share your experience and help shape better travels.</p>
                 </div>
                 <div className="h-px bg-white/10 w-full mb-6"></div>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -191,8 +198,8 @@ export default function Reviews() {
                 </div>
             </div>
 
-            {/* MAIN CONTENT */}
-            <div className="bg-[#1D2332] rounded-[28px] flex flex-col lg:flex-row overflow-hidden">
+            {/* MAIN CONTENT — rises up after header */}
+            <div className={`bg-[#1D2332] rounded-[28px] flex flex-col lg:flex-row overflow-hidden transition-all duration-600 ease-out ${animStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
 
                 {/* LEFT: VISUALS */}
                 <div className="flex-1 p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-white/10 bg-[#1D2332] flex flex-col gap-4">

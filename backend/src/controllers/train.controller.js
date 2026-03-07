@@ -91,7 +91,18 @@ export async function getTrainsBetween(req, res) {
             };
         });
 
-        // 2. Sort chronologically
+        // 2. Filter by running day if date is provided
+        if (date) {
+            const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const dateOnly = date.substring(0, 10); // handle both YYYY-MM-DD and full ISO strings
+            const [y, m, d] = dateOnly.split('-').map(Number);
+            const shortDay = DAYS[new Date(y, m - 1, d).getDay()];
+            mappedResults = mappedResults.filter(t =>
+                !t.runningDays || t.runningDays.length === 0 || t.runningDays.includes(shortDay)
+            );
+        }
+
+        // 3. Sort chronologically by departure time
         mappedResults.sort((a, b) => {
             const timeA = a.fromStation?.departureTime || a.fromStation?.arrivalTime || "23:59";
             const timeB = b.fromStation?.departureTime || b.fromStation?.arrivalTime || "23:59";
@@ -418,7 +429,7 @@ export async function getFare(req, res) {
         let resCharge = 0;
         const isAC = ['1A', '2A', '3A', '3E', 'CC', 'EC'].includes(cls);
 
-        if (['GS', 'UR', '2S'].includes(cls)) {
+        if (['GS', 'UR', '2S', 'GN'].includes(cls)) {
             const ordBase = getOrdinaryBase(distanceKm);
             baseFare = isOrdinary ? ordBase : Math.round(ordBase * 1.5);
             resCharge = (cls === '2S') ? 15 : (isOrdinary ? 0 : 15);
@@ -433,7 +444,7 @@ export async function getFare(req, res) {
         const preTax = baseFare + sfCharge + resCharge;
         const gst = isAC ? Math.round(preTax * 0.05) : 0;  // 5% GST on AC
 
-        const totalFare = Math.max((['GS', 'UR'].includes(cls) && isOrdinary) ? 10 : 50, Math.ceil((preTax + gst) / 5) * 5); // round to ₹5
+        const totalFare = Math.max((['GS', 'UR', 'GN'].includes(cls) && isOrdinary) ? 10 : 50, Math.ceil((preTax + gst) / 5) * 5); // round to ₹5
 
         let ratePerKm = (totalFare / distanceKm).toFixed(2);
 

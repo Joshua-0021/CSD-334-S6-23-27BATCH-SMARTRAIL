@@ -1,0 +1,1388 @@
+[
+  {
+    "trainNumber": "12076",
+    "trainName": "Kozhikode Jan Shatabdi Express",
+    "type": "Jan Shatabdi Express",
+    "source": "TVC",
+    "destination": "CLT"
+  },
+  {
+    "trainNumber": "12624",
+    "trainName": "MGR Chennai Central Mail",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "MAS"
+  },
+  {
+    "trainNumber": "12625",
+    "trainName": "Kerala Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "NDLS"
+  },
+  {
+    "trainNumber": "12659",
+    "trainName": "Gurudev SF Express",
+    "type": "Superfast Express",
+    "source": "NCJ",
+    "destination": "SHM"
+  },
+  {
+    "trainNumber": "12696",
+    "trainName": "M.G.R Chennai Central SF Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "MAS"
+  },
+  {
+    "trainNumber": "16127",
+    "trainName": "Guruvayur MS GURUVAYUR EXP",
+    "type": "Mail/Express",
+    "source": "MS",
+    "destination": "GUV"
+  },
+  {
+    "trainNumber": "16302",
+    "trainName": "Venad Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "SRR"
+  },
+  {
+    "trainNumber": "16304",
+    "trainName": "Vanchinad Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "16329",
+    "trainName": "Mangaluru Amrit Bharat Express",
+    "type": "Mail/Express",
+    "source": "NCJ",
+    "destination": "MAJN"
+  },
+  {
+    "trainNumber": "16332",
+    "trainName": "Mumbai CSMT Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "CSMT"
+  },
+  {
+    "trainNumber": "16342",
+    "trainName": "Guruvayur InterCity Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "GUV"
+  },
+  {
+    "trainNumber": "16343",
+    "trainName": "Amritha Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "RMM"
+  },
+  {
+    "trainNumber": "16346",
+    "trainName": "Netravati Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "LTT"
+  },
+  {
+    "trainNumber": "16347",
+    "trainName": "Mangaluru Central Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "MAQ"
+  },
+  {
+    "trainNumber": "16366",
+    "trainName": "Kottayam Express",
+    "type": "Mail/Express",
+    "source": "NCJ",
+    "destination": "KTYM"
+  },
+  {
+    "trainNumber": "16382",
+    "trainName": "Pune Express",
+    "type": "Mail/Express",
+    "source": "CAPE",
+    "destination": "PUNE"
+  },
+  {
+    "trainNumber": "16525",
+    "trainName": "KSR Bengaluru Express",
+    "type": "Mail/Express",
+    "source": "CAPE",
+    "destination": "SBC"
+  },
+  {
+    "trainNumber": "16604",
+    "trainName": "Maveli Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "MAQ"
+  },
+  {
+    "trainNumber": "16606",
+    "trainName": "Ernad Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "MAQ"
+  },
+  {
+    "trainNumber": "16629",
+    "trainName": "Malabar Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "MAQ"
+  },
+  {
+    "trainNumber": "16650",
+    "trainName": "Parasuram Express",
+    "type": "Mail/Express",
+    "source": "CAPE",
+    "destination": "MAQ"
+  },
+  {
+    "trainNumber": "16729",
+    "trainName": "Madurai - Punalur Express",
+    "type": "Mail/Express",
+    "source": "MDU",
+    "destination": "PUU"
+  },
+  {
+    "trainNumber": "20630",
+    "trainName": "Sabari Superfast Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "SC"
+  },
+  {
+    "trainNumber": "20635",
+    "trainName": "Kollam Junction ANANTAPURI EXP",
+    "type": "Superfast Express",
+    "source": "MS",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "56102",
+    "trainName": "Nagercoil - Kollam Passenger",
+    "type": "Passenger",
+    "source": "NCJ",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "56304",
+    "trainName": "Thiruvananthapuram Central - Kollam Passenger",
+    "type": "Passenger",
+    "source": "TVC",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "56706",
+    "trainName": "Kanniyakumari - Punalur Passenger",
+    "type": "Passenger",
+    "source": "CAPE",
+    "destination": "PUU"
+  },
+  {
+    "trainNumber": "66305",
+    "trainName": "Kanniyakumari - Kollam MEMU",
+    "type": "EMU",
+    "source": "CAPE",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "12698",
+    "trainName": "MGR Chennai Central Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "MAS"
+  },
+  {
+    "trainNumber": "16128",
+    "trainName": "Chennai Egmore GUV CHENNAI EXP",
+    "type": "Mail/Express",
+    "source": "GUV",
+    "destination": "MS"
+  },
+  {
+    "trainNumber": "16381",
+    "trainName": "Kanniyakumari Express",
+    "type": "Mail/Express",
+    "source": "PUNE",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "16526",
+    "trainName": "Kanniyakumari Express",
+    "type": "Mail/Express",
+    "source": "SBC",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "16649",
+    "trainName": "Parasuram Express",
+    "type": "Mail/Express",
+    "source": "MAQ",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "16730",
+    "trainName": "Punalur - Madurai Express",
+    "type": "Mail/Express",
+    "source": "PUU",
+    "destination": "MDU"
+  },
+  {
+    "trainNumber": "20636",
+    "trainName": "Chennai Egmore ANANTAPURI EXP",
+    "type": "Superfast Express",
+    "source": "QLN",
+    "destination": "MS"
+  },
+  {
+    "trainNumber": "56101",
+    "trainName": "Kollam - Nagercoil Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "56306",
+    "trainName": "Thiruvananthapuram North - Nagercoil Passenger",
+    "type": "Passenger",
+    "source": "TVCN",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "56308",
+    "trainName": "Thiruvananthapuram Central - Nagercoil Passenger",
+    "type": "Passenger",
+    "source": "TVC",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "56310",
+    "trainName": "Thiruvananthapuram North - Nagercoil Passenger",
+    "type": "Passenger",
+    "source": "TVCN",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "56705",
+    "trainName": "Punalur - Kanniyakumari Passenger",
+    "type": "Passenger",
+    "source": "PUU",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "66306",
+    "trainName": "Kollam - Kanniyakumari MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "12082",
+    "trainName": "Kannur Jan Shatabdi Express",
+    "type": "Jan Shatabdi Express",
+    "source": "TVC",
+    "destination": "CAN"
+  },
+  {
+    "trainNumber": "12431",
+    "trainName": "Hazrat Nizamuddin Rajdhani Express",
+    "type": "Rajdhani Express",
+    "source": "TVC",
+    "destination": "NZM"
+  },
+  {
+    "trainNumber": "12507",
+    "trainName": "Aronai Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "SCL"
+  },
+  {
+    "trainNumber": "12643",
+    "trainName": "Hazrat Nizamuddin Swarna Jayanti SF Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "NZM"
+  },
+  {
+    "trainNumber": "16317",
+    "trainName": "Himsagar Express",
+    "type": "Mail/Express",
+    "source": "CAPE",
+    "destination": "SVDK"
+  },
+  {
+    "trainNumber": "16334",
+    "trainName": "Veraval Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "VRL"
+  },
+  {
+    "trainNumber": "16336",
+    "trainName": "Gandhidham Weekly Express",
+    "type": "Mail/Express",
+    "source": "NCJ",
+    "destination": "GIMB"
+  },
+  {
+    "trainNumber": "19577",
+    "trainName": "Jamnagar Express",
+    "type": "Mail/Express",
+    "source": "TEN",
+    "destination": "JAM"
+  },
+  {
+    "trainNumber": "20632",
+    "trainName": "Mangaluru Central Vande Bharat Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "MAQ"
+  },
+  {
+    "trainNumber": "20634",
+    "trainName": "Kasaragod Vande Bharat Express",
+    "type": "Mail/Express",
+    "source": "TVC",
+    "destination": "KGQ"
+  },
+  {
+    "trainNumber": "20923",
+    "trainName": "Gandhidham Humsafar Express",
+    "type": "Superfast Express",
+    "source": "TEN",
+    "destination": "GIMB"
+  },
+  {
+    "trainNumber": "22208",
+    "trainName": "MGR Chennai Central SUPER AC Express",
+    "type": "Rajdhani Express",
+    "source": "TVC",
+    "destination": "MAS"
+  },
+  {
+    "trainNumber": "22503",
+    "trainName": "Dibrugarh Vivek SF Express",
+    "type": "Superfast Express",
+    "source": "CAPE",
+    "destination": "DBRG"
+  },
+  {
+    "trainNumber": "22620",
+    "trainName": "Bilaspur SF Express",
+    "type": "Superfast Express",
+    "source": "TEN",
+    "destination": "BSP"
+  },
+  {
+    "trainNumber": "22633",
+    "trainName": "Hazrat Nizamuddin SF Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "NZM"
+  },
+  {
+    "trainNumber": "22641",
+    "trainName": "Shalimar SF Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "SHM"
+  },
+  {
+    "trainNumber": "22653",
+    "trainName": "Hazrat Nizamuddin SF Express",
+    "type": "Superfast Express",
+    "source": "TVC",
+    "destination": "NZM"
+  },
+  {
+    "trainNumber": "04580",
+    "trainName": "Chandigarh Junction - Thiruvananthapuram Central (Trivandrum) Passenger",
+    "type": "Passenger",
+    "source": "CDG",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12075",
+    "trainName": "Thiruvananthapuram Central Jan Shatabdi Express",
+    "type": "Jan Shatabdi Express",
+    "source": "CLT",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12623",
+    "trainName": "Thiruvananthapuram Central Mail",
+    "type": "Superfast Express",
+    "source": "MAS",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12626",
+    "trainName": "Kerala Express",
+    "type": "Superfast Express",
+    "source": "NDLS",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12660",
+    "trainName": "Gurudev SF Express",
+    "type": "Superfast Express",
+    "source": "SHM",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "12695",
+    "trainName": "Thiruvananthapuram Central SF Express",
+    "type": "Superfast Express",
+    "source": "MAS",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16301",
+    "trainName": "Venad Express",
+    "type": "Mail/Express",
+    "source": "SRR",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16303",
+    "trainName": "Vanchinad Express",
+    "type": "Mail/Express",
+    "source": "ERS",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16330",
+    "trainName": "Nagercoil Amrit Bharat Express",
+    "type": "Mail/Express",
+    "source": "MAJN",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "16331",
+    "trainName": "Thiruvananthapuram Central Express",
+    "type": "Mail/Express",
+    "source": "CSMT",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16341",
+    "trainName": "Thiruvananthapuram Central InterCity Express",
+    "type": "Mail/Express",
+    "source": "GUV",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16344",
+    "trainName": "Amritha Express",
+    "type": "Mail/Express",
+    "source": "RMM",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16345",
+    "trainName": "Netravati Express",
+    "type": "Mail/Express",
+    "source": "LTT",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16348",
+    "trainName": "Thiruvananthapuram Central Express",
+    "type": "Mail/Express",
+    "source": "MAQ",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16603",
+    "trainName": "Maveli Express",
+    "type": "Mail/Express",
+    "source": "MAQ",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16605",
+    "trainName": "Ernad Express",
+    "type": "Mail/Express",
+    "source": "MAQ",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16630",
+    "trainName": "Malabar Express",
+    "type": "Mail/Express",
+    "source": "MAQ",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "20629",
+    "trainName": "Sabari Superfast Express",
+    "type": "Superfast Express",
+    "source": "SC",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "56303",
+    "trainName": "Kollam - Thiruvananthapuram Central Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "56307",
+    "trainName": "Kollam - Thiruvananthapuram Central Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16349",
+    "trainName": "Nilambur Road Rajya Rani Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "NIL"
+  },
+  {
+    "trainNumber": "17042",
+    "trainName": "Charlapalli Amrit Bharat Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "CHZ"
+  },
+  {
+    "trainNumber": "06524",
+    "trainName": "SMVT Bengaluru Special Fare AC Special",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "SMVB"
+  },
+  {
+    "trainNumber": "06548",
+    "trainName": "SMVT Bengaluru Special Fare AC Special",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "SMVB"
+  },
+  {
+    "trainNumber": "06556",
+    "trainName": "SMVT Bengaluru Special Fare AC Special",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "SMVB"
+  },
+  {
+    "trainNumber": "12697",
+    "trainName": "Thiruvananthapuram Central Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "MAS",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "56305",
+    "trainName": "Nagercoil - Thiruvananthapuram North Passenger",
+    "type": "Passenger",
+    "source": "NCJ",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "56309",
+    "trainName": "Nagercoil - Thiruvananthapuram North Passenger",
+    "type": "Passenger",
+    "source": "NCJ",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "06084",
+    "trainName": "Madgaon Junction - Nagercoil Junction Passenger",
+    "type": "Passenger",
+    "source": "MAO",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "12081",
+    "trainName": "Thiruvananthapuram Central Jan Shatabdi Express",
+    "type": "Jan Shatabdi Express",
+    "source": "CAN",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12432",
+    "trainName": "Thiruvananthapuram Central Rajdhani Express",
+    "type": "Rajdhani Express",
+    "source": "NZM",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12508",
+    "trainName": "Aronai Express",
+    "type": "Superfast Express",
+    "source": "SCL",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "12644",
+    "trainName": "Thiruvananthapuram Central Swarna Jayanti SF Express",
+    "type": "Superfast Express",
+    "source": "NZM",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16318",
+    "trainName": "Himsagar Express",
+    "type": "Mail/Express",
+    "source": "SVDK",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "16333",
+    "trainName": "Thiruvananthapuram Central Express",
+    "type": "Mail/Express",
+    "source": "VRL",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16335",
+    "trainName": "Nagercoil Weekly Express",
+    "type": "Mail/Express",
+    "source": "GIMB",
+    "destination": "NCJ"
+  },
+  {
+    "trainNumber": "19578",
+    "trainName": "Tirunelveli Express",
+    "type": "Mail/Express",
+    "source": "JAM",
+    "destination": "TEN"
+  },
+  {
+    "trainNumber": "20631",
+    "trainName": "Thiruvananthapuram Central Vande Bharat Express",
+    "type": "Mail/Express",
+    "source": "MAQ",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "20633",
+    "trainName": "Thiruvananthapuram Central Vande Bharat Express",
+    "type": "Mail/Express",
+    "source": "KGQ",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "20924",
+    "trainName": "Tirunelveli Humsafar Express",
+    "type": "Superfast Express",
+    "source": "GIMB",
+    "destination": "TEN"
+  },
+  {
+    "trainNumber": "22207",
+    "trainName": "Thiruvananthapuram Central SUPER AC Express",
+    "type": "Rajdhani Express",
+    "source": "MAS",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "22504",
+    "trainName": "Kanniyakumari Vivek SF Express",
+    "type": "Superfast Express",
+    "source": "DBRG",
+    "destination": "CAPE"
+  },
+  {
+    "trainNumber": "22619",
+    "trainName": "Tirunelveli SF Express",
+    "type": "Superfast Express",
+    "source": "BSP",
+    "destination": "TEN"
+  },
+  {
+    "trainNumber": "22634",
+    "trainName": "Thiruvananthapuram Central SF Express",
+    "type": "Superfast Express",
+    "source": "NZM",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "22642",
+    "trainName": "Thiruvananthapuram Central SF Express",
+    "type": "Superfast Express",
+    "source": "SHM",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "22654",
+    "trainName": "Thiruvananthapuram Central SF Express",
+    "type": "Superfast Express",
+    "source": "NZM",
+    "destination": "TVC"
+  },
+  {
+    "trainNumber": "16350",
+    "trainName": "Thiruvananthapuram North Rajya Rani Express",
+    "type": "Mail/Express",
+    "source": "NIL",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "17041",
+    "trainName": "Thiruvananthapuram North Amrit Bharat Express",
+    "type": "Mail/Express",
+    "source": "CHZ",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "06523",
+    "trainName": "Thiruvananthapuram North Special Fare AC Special",
+    "type": "Mail/Express",
+    "source": "SMVB",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "06547",
+    "trainName": "Thiruvananthapuram North Special Fare AC Special",
+    "type": "Mail/Express",
+    "source": "SMVB",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "06555",
+    "trainName": "Thiruvananthapuram North Special Fare AC Special",
+    "type": "Mail/Express",
+    "source": "SMVB",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16327",
+    "trainName": "Guruvayur Express",
+    "type": "Mail/Express",
+    "source": "MDU",
+    "destination": "GUV"
+  },
+  {
+    "trainNumber": "16362",
+    "trainName": "Ernakulam Jn. Express",
+    "type": "Mail/Express",
+    "source": "VLNK",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "16791",
+    "trainName": "Palaruvi Express",
+    "type": "Mail/Express",
+    "source": "TN",
+    "destination": "PGT"
+  },
+  {
+    "trainNumber": "18568",
+    "trainName": "Visakhapatnam Weekly Express",
+    "type": "Mail/Express",
+    "source": "QLN",
+    "destination": "VSKP"
+  },
+  {
+    "trainNumber": "56302",
+    "trainName": "Kollam - Alappuzha Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "ALLP"
+  },
+  {
+    "trainNumber": "66303",
+    "trainName": "Kollam - Ernakulam Jn. MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "66308",
+    "trainName": "Kollam - Ernakulam Jn. MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "66310",
+    "trainName": "Kollam - Ernakulam Jn. MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "66312",
+    "trainName": "Kollam - Alappuzha MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "ALLP"
+  },
+  {
+    "trainNumber": "66316",
+    "trainName": "Kollam - Kottayam MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "KTYM"
+  },
+  {
+    "trainNumber": "66322",
+    "trainName": "Kollam - Ernakulam Jn. MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "07314",
+    "trainName": "SSS Hubballi Special Fare Special",
+    "type": "Mail/Express",
+    "source": "QLN",
+    "destination": "UBL"
+  },
+  {
+    "trainNumber": "16102",
+    "trainName": "Chennai Egmore Express",
+    "type": "Mail/Express",
+    "source": "QLN",
+    "destination": "TBM"
+  },
+  {
+    "trainNumber": "16328",
+    "trainName": "Madurai Express",
+    "type": "Mail/Express",
+    "source": "GUV",
+    "destination": "MDU"
+  },
+  {
+    "trainNumber": "16361",
+    "trainName": "Velankanni ERS VLNK EXP",
+    "type": "Mail/Express",
+    "source": "ERS",
+    "destination": "VLNK"
+  },
+  {
+    "trainNumber": "16792",
+    "trainName": "Palaruvi Express",
+    "type": "Mail/Express",
+    "source": "PGT",
+    "destination": "TN"
+  },
+  {
+    "trainNumber": "66302",
+    "trainName": "Kollam - Punalur MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "PUU"
+  },
+  {
+    "trainNumber": "66318",
+    "trainName": "Kollam - Punalur MEMU",
+    "type": "EMU",
+    "source": "QLN",
+    "destination": "PUU"
+  },
+  {
+    "trainNumber": "06108",
+    "trainName": "Thiruvananthapuram North (Kochuveli) - Chennai Egmore Passenger",
+    "type": "Passenger",
+    "source": "TVCN",
+    "destination": "MS"
+  },
+  {
+    "trainNumber": "06128",
+    "trainName": "Kollam Junction (Quilon) - MGR Chennai Central Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "MAS"
+  },
+  {
+    "trainNumber": "07120",
+    "trainName": "Kollam Junction (Quilon) - Charlapalli Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "CHZ"
+  },
+  {
+    "trainNumber": "07134",
+    "trainName": "Kollam Junction (Quilon) - Hazur Sahib Nanded Passenger",
+    "type": "Passenger",
+    "source": "QLN",
+    "destination": "NED"
+  },
+  {
+    "trainNumber": "12202",
+    "trainName": "Mumbai LTT Garib Rath Express",
+    "type": "Garib Rath Express",
+    "source": "TVCN",
+    "destination": "LTT"
+  },
+  {
+    "trainNumber": "12258",
+    "trainName": "Yesvantpur Garib Rath Express",
+    "type": "Garib Rath Express",
+    "source": "TVCN",
+    "destination": "YPR"
+  },
+  {
+    "trainNumber": "12778",
+    "trainName": "SSS Hubballi Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "UBL"
+  },
+  {
+    "trainNumber": "16312",
+    "trainName": "Shri Ganganagar Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "SGNR"
+  },
+  {
+    "trainNumber": "16319",
+    "trainName": "SMVT Bengaluru Humsafar Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "SMVB"
+  },
+  {
+    "trainNumber": "16562",
+    "trainName": "Yesvantpur AC Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "YPR"
+  },
+  {
+    "trainNumber": "17422",
+    "trainName": "Kollam - Tirupati Express",
+    "type": "Mail/Express",
+    "source": "QLN",
+    "destination": "TPTY"
+  },
+  {
+    "trainNumber": "19259",
+    "trainName": "Bhavnagar Terminus Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "BVC"
+  },
+  {
+    "trainNumber": "22114",
+    "trainName": "Mumbai LTT SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "LTT"
+  },
+  {
+    "trainNumber": "22648",
+    "trainName": "Korba SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "KRBA"
+  },
+  {
+    "trainNumber": "12217",
+    "trainName": "Kerala Sampark Kranti Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "CDG"
+  },
+  {
+    "trainNumber": "12483",
+    "trainName": "Amritsar SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "ASR"
+  },
+  {
+    "trainNumber": "12512",
+    "trainName": "Gorakhpur Rapti Sagar SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "GKP"
+  },
+  {
+    "trainNumber": "16316",
+    "trainName": "Mysuru Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "MYS"
+  },
+  {
+    "trainNumber": "16355",
+    "trainName": "Mangaluru Jn. Antyodaya Express",
+    "type": "Mail/Express",
+    "source": "TVCN",
+    "destination": "MAJN"
+  },
+  {
+    "trainNumber": "20909",
+    "trainName": "Porbandar Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "PBR"
+  },
+  {
+    "trainNumber": "20931",
+    "trainName": "Indore Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "INDB"
+  },
+  {
+    "trainNumber": "22646",
+    "trainName": "Ahilya Nagari SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "INDB"
+  },
+  {
+    "trainNumber": "22659",
+    "trainName": "Yog Nagari Rishikesh SF Express",
+    "type": "Superfast Express",
+    "source": "TVCN",
+    "destination": "YNRK"
+  },
+  {
+    "trainNumber": "18567",
+    "trainName": "Kollam Weekly Express",
+    "type": "Mail/Express",
+    "source": "VSKP",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "56301",
+    "trainName": "Alappuzha - Kollam Passenger",
+    "type": "Passenger",
+    "source": "ALLP",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "56311",
+    "trainName": "Kottayam - Kollam Passenger",
+    "type": "Passenger",
+    "source": "KTYM",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66304",
+    "trainName": "Ernakulam Jn. - Kollam MEMU",
+    "type": "EMU",
+    "source": "ERS",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66307",
+    "trainName": "Ernakulam Jn. - Kollam MEMU",
+    "type": "EMU",
+    "source": "ERS",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66309",
+    "trainName": "Ernakulam Jn. - Kollam MEMU",
+    "type": "EMU",
+    "source": "ERS",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66311",
+    "trainName": "Alappuzha - Kollam MEMU",
+    "type": "EMU",
+    "source": "ALLP",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66315",
+    "trainName": "Kottayam - Kollam MEMU",
+    "type": "EMU",
+    "source": "KTYM",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66321",
+    "trainName": "Ernakulam Jn. - Kollam MEMU",
+    "type": "EMU",
+    "source": "ERS",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "07193",
+    "trainName": "Kollam Special Fare Special",
+    "type": "Mail/Express",
+    "source": "HYB",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "07313",
+    "trainName": "Kollam Special Fare Special",
+    "type": "Mail/Express",
+    "source": "UBL",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "16101",
+    "trainName": "Kollam Express",
+    "type": "Mail/Express",
+    "source": "TBM",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66301",
+    "trainName": "Punalur - Kollam MEMU",
+    "type": "EMU",
+    "source": "PUU",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "66317",
+    "trainName": "Punalur - Kollam MEMU",
+    "type": "EMU",
+    "source": "PUU",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "06117",
+    "trainName": "MGR Chennai Central - Kollam Junction (Quilon) Passenger",
+    "type": "Passenger",
+    "source": "MAS",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "07117",
+    "trainName": "Sirpur Kaghaznagar - Kollam Junction (Quilon) Passenger",
+    "type": "Passenger",
+    "source": "SKZR",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "07119",
+    "trainName": "Charlapalli - Kollam Junction (Quilon) Passenger",
+    "type": "Passenger",
+    "source": "CHZ",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "12201",
+    "trainName": "Thiruvananthapuram North Garib Rath Express",
+    "type": "Garib Rath Express",
+    "source": "LTT",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "12257",
+    "trainName": "Thiruvananthapuram North Garib Rath Express",
+    "type": "Garib Rath Express",
+    "source": "YPR",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "12777",
+    "trainName": "Thiruvananthapuram North Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "UBL",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16311",
+    "trainName": "Thiruvananthapuram North Express",
+    "type": "Mail/Express",
+    "source": "SGNR",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16320",
+    "trainName": "Thiruvananthapuram North Humsafar Express",
+    "type": "Superfast Express",
+    "source": "SMVB",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16561",
+    "trainName": "Thiruvananthapuram North AC Express",
+    "type": "Superfast Express",
+    "source": "YPR",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "17421",
+    "trainName": "Tirupati - Kollam Express",
+    "type": "Mail/Express",
+    "source": "TPTY",
+    "destination": "QLN"
+  },
+  {
+    "trainNumber": "19260",
+    "trainName": "Thiruvananthapuram North Express",
+    "type": "Mail/Express",
+    "source": "BVC",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "22113",
+    "trainName": "Thiruvananthapuram North SF Express",
+    "type": "Superfast Express",
+    "source": "LTT",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "22647",
+    "trainName": "Thiruvananthapuram North SF Express",
+    "type": "Superfast Express",
+    "source": "KRBA",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16310",
+    "trainName": "Ernakulam Jn. MEMU Express",
+    "type": "Mail/Express",
+    "source": "KYJ",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "16309",
+    "trainName": "Kayamkulam MEMU Express",
+    "type": "Mail/Express",
+    "source": "ERS",
+    "destination": "KYJ"
+  },
+  {
+    "trainNumber": "12218",
+    "trainName": "Kerala Sampark Kranti Express",
+    "type": "Mail/Express",
+    "source": "CDG",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "12484",
+    "trainName": "Thiruvananthapuram North Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "ASR",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "12511",
+    "trainName": "Thiruvananthapuram North Rapti Sagar SF Express",
+    "type": "Superfast Express",
+    "source": "GKP",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16315",
+    "trainName": "Thiruvananthapuram North Express",
+    "type": "Mail/Express",
+    "source": "MYS",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "16356",
+    "trainName": "Thiruvananthapuram North Antyodaya Express",
+    "type": "Mail/Express",
+    "source": "MAJN",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "20910",
+    "trainName": "Thiruvananthapuram North Weekly SF Express",
+    "type": "Superfast Express",
+    "source": "PBR",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "22645",
+    "trainName": "Ahilya Nagari SF Express",
+    "type": "Superfast Express",
+    "source": "INDB",
+    "destination": "TVCN"
+  },
+  {
+    "trainNumber": "56319",
+    "trainName": "Ernakulam Jn. - Kayamkulam Passenger",
+    "type": "Passenger",
+    "source": "ERS",
+    "destination": "KYJ"
+  },
+  {
+    "trainNumber": "56312",
+    "trainName": "Alappuzha - Ernakulam Jn. Passenger",
+    "type": "Passenger",
+    "source": "ALLP",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "56320",
+    "trainName": "Kayamkulam - Ernakulam Jn. Passenger",
+    "type": "Passenger",
+    "source": "KYJ",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "66314",
+    "trainName": "Alappuzha - Ernakulam Jn. MEMU",
+    "type": "EMU",
+    "source": "ALLP",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "13352",
+    "trainName": "Dhanbad Express",
+    "type": "Mail/Express",
+    "source": "ALLP",
+    "destination": "DHN"
+  },
+  {
+    "trainNumber": "16307",
+    "trainName": "Kannur Executive Express",
+    "type": "Mail/Express",
+    "source": "ALLP",
+    "destination": "CAN"
+  },
+  {
+    "trainNumber": "22640",
+    "trainName": "MGR Chennai Central SF Express",
+    "type": "Superfast Express",
+    "source": "ALLP",
+    "destination": "MAS"
+  },
+  {
+    "trainNumber": "16326",
+    "trainName": "Nilambur Road Express",
+    "type": "Mail/Express",
+    "source": "KTYM",
+    "destination": "NIL"
+  },
+  {
+    "trainNumber": "56006",
+    "trainName": "Kottayam - Ernakulam Jn. Passenger",
+    "type": "Passenger",
+    "source": "KTYM",
+    "destination": "ERS"
+  },
+  {
+    "trainNumber": "07110",
+    "trainName": "Kottayam - Kakinada Town Junction Passenger",
+    "type": "Passenger",
+    "source": "KTYM",
+    "destination": "CCT"
+  },
+  {
+    "trainNumber": "16325",
+    "trainName": "Kottayam Express",
+    "type": "Mail/Express",
+    "source": "NIL",
+    "destination": "KTYM"
+  },
+  {
+    "trainNumber": "56005",
+    "trainName": "Ernakulam - Kottayam Passenger",
+    "type": "Passenger",
+    "source": "ERS",
+    "destination": "KTYM"
+  }
+]
